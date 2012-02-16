@@ -101,7 +101,7 @@ var ClassAttack = {
 		var i,
 			x = unit.x,
 			y = unit.y,
-			positions = [[x + 2, y + 1], [x + 2, y + 3], [x + 1, y + 3], [x - 5, y - 1]];
+			positions = [[x + 1, y + 1], [x + 2, y + 3], [x + 1, y + 3], [x - 5, y - 1]];
 
 		for (i = 0; i < positions.length; i += 1) {
 			if (getDistance(me, positions[i][0], positions[i][1]) < 2) {
@@ -116,7 +116,7 @@ var ClassAttack = {
 		var i,
 			x = unit.x,
 			y = unit.y,
-			positions = [[x + 2, y + 1], [x + 2, y + 3], [x + 1, y + 3], [x - 5, y - 1]];
+			positions = [[x + 1, y + 1], [x + 2, y + 3], [x + 1, y + 3], [x - 5, y - 1]];
 
 		//positions.sort(Attack.sortRooms);
 
@@ -134,13 +134,11 @@ var ClassAttack = {
 			delay(40);
 		}
 
-		if (getDistance(me, x, y) > 3) {
+		if (me.gametype === 1 || getDistance(me, x, y) > 2) {
 			return Pather.moveTo(x, y, 1);
 		}
 
-		clickMap(0, 0, x, y);
-		delay(20);
-		clickMap(2, 0, x, y);
+		me.move(x, y);
 
 		while (!me.idle) {
 			delay(40);

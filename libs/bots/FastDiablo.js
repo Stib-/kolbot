@@ -1,6 +1,48 @@
 function FastDiablo() {
 	var i, tick, seal;
 	
+	this.chaosPreattack = function (name) {
+		var i, n, target, pos, positions;
+
+		switch (me.classid) {
+			case 0:
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				target = getUnit(1, name);
+
+				if (!target) {
+					return;
+				}
+
+				positions = [[6, 11], [0, 8], [8, -1], [-9, 2], [0, -11], [8, -8]];
+
+				for (i = 0; i < positions.length; i += 1) {
+					if (Attack.validSpot(target.x + positions[i][0], target.y + positions[i][1])) { // check if we can move there
+						Pather.moveTo(target.x + positions[i][0], target.y + positions[i][1]);
+						Skill.setSkill(Config.AttackSkill[2], 0);
+
+						for (n = 0; n < 5; n += 1) {
+							Skill.cast(Config.AttackSkill[1], 1);
+						}
+
+						break;
+					}
+				}
+				
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+		}
+	};
+	
 	this.openSeal = function (id) {
 		Pather.moveToPreset(108, 2, id, 4);
 
@@ -58,6 +100,7 @@ function FastDiablo() {
 		delay(300);
 	}
 
+	this.chaosPreattack(getLocaleString(2852));
 	Attack.kill(getLocaleString(2852)); // Lord De Seis
 	Pickit.pickItems();
 

@@ -39,7 +39,7 @@ var Town = {
 		Runewords.makeRunewords();
 		this.stash();
 
-		while (getUIFlag(0x1A) || getUIFlag(0x19)) {
+		while (getUIFlag(0x08) || getUIFlag(0x1A) || getUIFlag(0x19)) {
 			me.cancel();
 			delay(300)
 		}
@@ -737,11 +737,14 @@ MainLoop: for (i = 0; i < 3; i += 1) {
 		}
 
 		var i, tick,
+			useTK = me.classid === 1 && me.getSkill(43, 1),
 			stash = getUnit(2, 267);
 
 		if (stash) {
 			for (i = 0; i < 3; i += 1) {
-				if (me.classid === 1 && me.getSkill(43, 1)) {
+				Pather.moveToUnit(stash, 0, 0, false, useTK);
+				
+				if (useTK) {
 					Skill.cast(43, 0, stash);
 				} else {
 					stash.interact();

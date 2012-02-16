@@ -94,12 +94,12 @@
 //[name] == trollnest && [quality] <= superior && [flag] != ethereal # [enhanceddefense] == 15 && ([itemmaxdurabilitypercent] == 0 || [itemmaxdurabilitypercent] == 15) && ([sockets] != 1 && [sockets] != 2)
 [name] == monarch && [quality] == normal && [flag] == ethereal # [sockets] == 0 && [defense] == 222 || [sockets] == 4 && [defense] == 333
 //[name] == trollnest && [quality] == normal && [flag] == ethereal # [sockets] == 0
-[name] == monarch && [quality] <= superior # [sockets] == 4 # [maxquantity] == 1
+//[name] == monarch && [quality] <= superior # [sockets] == 4 # [maxquantity] == 1
 
 //          ==unique==
 [name] == spikedshield && [quality] == unique # [enhanceddefense] == 60 // swordback hold
-[name] == barbedshield && [quality] == unique # ([defense] == 134 || [defense] == 197) && [itemopenwounds] > 0 // swordback hold x1
-[name] == monarch && [quality] == unique # [defense] == 148 // stormshield
+[name] == barbedshield && [quality] == unique && [flag] == identified # [defense] == 134 || [defense] == 197 // swordback hold x1
+//[name] == monarch && [quality] == unique # [defense] == 148 // stormshield
 //[name] == trollnest && [quality] == unique && [flag] == ethereal # [sockets] == 3 // head hunter's glory
 //[name] == defender && [quality] == unique # [enhanceddefense] == 150 // visceratuant
 [name] == roundshield && [quality] == unique # [enhanceddefense] == 220 // moser
@@ -177,7 +177,7 @@
 [name] == heavygloves && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 20 // bloodfist
 [name] == sharkskingloves && [quality] == unique # [enhanceddefense] == 20 // && [defense] == 56 // bloodfist x1
 [name] == vampirebonegloves && [quality] == unique # [enhanceddefense] == 20 && [defense] == 88 // bloodfist x2
-[name] == chaingloves && [quality] == unique && [flag] != ethereal # [itemmagicbonus] == 40 // chance guard
+[name] == chaingloves && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 30 && [itemmagicbonus] == 40 // chance guard
 [name] == lightgauntlets && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 30 // magefist
 [name] == battlegauntlets && [quality] == unique # [enhanceddefense] == 30 // && [defense] == 71 // magefist x1
 [name] == crusadergauntlets && [quality] == unique # [enhanceddefense] == 30 && [defense] == 98 // magefist x2
@@ -199,7 +199,7 @@
 [name] == lightplatedboots && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 60 // goblin toe
 [name] == battleboots && [quality] == unique # [defense] == 90 // goblin toe x1
 [name] == warboots && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 200 // gore rider
-[name] == myrmidongreaves && [quality] == unique # [enhanceddefense] == 200 && [defense] == 213 // gore rider x1
+[name] == myrmidongreaves && [quality] == unique && [flag] == identified # [defense] == 213 // gore rider x1
 [name] == scarabshellboots && [quality] == unique && [flag] == ethereal # [strength]+[vitality] == 30 // sandstorm trek
 //[name] == boneweaveboots && [quality] == unique && [flag] != ehtereal # [strength] == 20 // marrowwalk
 [name] == myrmidongreaves && [quality] == unique && [flag] != ethereal # [shadowdisciplinesskilltab] == 2 && [dexterity] == 25 // shadow dancer
@@ -697,7 +697,7 @@
 //[name] == swirlingcrystal && [quality] == set # # [maxquantity] == 1
 //[name] == deathmask && [quality] == set # [defense] == 131
 [name] == lacqueredplate && [quality] == set # [defense] == 541
-[name] == amulet && [quality] == set # [lightresist] == 33
+//[name] == amulet && [quality] == set # [lightresist] == 33
 [name] == meshbelt && [quality] == set # [itemmagicbonus] == 15 && [defense] == 40
 
 // --aldur's--
@@ -793,8 +793,8 @@
 //[name] == eldritchorb && [quality] == unique # [sorceressskills] == 3 && [passiveltngmastery] == 20
 //[name] == crystalsword && [quality] <= superior && [flag] == ethereal # [sockets] == 4
 //[name] == balancedknife && [quality] == magic # [warcriesskilltab] == 3
-
-//llECll@d2jsp
-[name] == gothicbow && [quality] == unique # [enhanceddamage] == 250 && [itemtohitpercent] == 150
-
 [name] == vambraces && [quality] == unique # [itemmagicbonus] > 0
+
+// Tr0uble
+([name] == gnarledstaff || [name] == battlestaff || [name] == gothicstaff || [name] == cedarstaff || [name] == shillelagh || [name] == elderstaff) && [quality] <= superior # ([sockets] == 0 || [sockets] == 4) && ([skillcoldmastery] > 0 && ([skillblizzard] > 0 && [skillglacialspike] > 0 || [skillfrozenorb] > 0 && [skillenchant]+[skillthunderstorm] > 0) || [skillicebolt] > 0 && [skilliceblast] > 0 && [skillwarmth] > 0)
+([name] == warstaff || [name] == runestaff || [name] == archonstaff) && [quality] <= superior # [sockets] == 4 && ([skillcoldmastery] > 0 && ([skillblizzard] > 0 && [skillglacialspike] > 0 || [skillfrozenorb] > 0 && [skillenchant]+[skillthunderstorm] > 0) || [skillicebolt] > 0 && [skilliceblast] > 0 && [skillwarmth] > 0)

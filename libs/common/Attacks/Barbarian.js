@@ -77,7 +77,7 @@ var ClassAttack = {
 
 	afterAttack: function () {
 		Precast.doPrecast(false);
-		this.findItem(20);
+		this.findItem(me.area === 83 ? 60 : 20);
 
 		if (me.getState(139)) {
 			Misc.unShift();
@@ -117,7 +117,8 @@ var ClassAttack = {
 		}
 
 		var i, j, coords, angle,
-			angles = [180, 45, -45, 90, -90]; // Angle offsets
+			//angles = [180, 45, -45, 90, -90]; // Angle offsets
+			angles = [120, -120, 180, 45, -45, 90, -90]; // Angle offsets
 
 		angle = Math.round(Math.atan2(me.y - unit.y, me.x - unit.x) * 180 / Math.PI);
 
@@ -131,7 +132,7 @@ MainLoop: for (i = 0; i < angles.length; i += 1) { // get a better spot
 			}
 
 			if (getDistance(me, coords[0], coords[1]) >= 3) {
-				me.runwalk = 0;
+				//me.runwalk = 0;
 
 				return Skill.cast(Config.AttackSkill[index], this.skillHand[index], coords[0], coords[1]);
 			}
@@ -226,6 +227,10 @@ MainLoop: for (i = 0; i < 3; i += 1) {
 
 	checkCorpse: function (unit) {
 		if (unit.mode !== 12) {
+			return false;
+		}
+
+		if ([345, 346, 347].indexOf(unit.classid) === -1 && unit.spectype === 0) {
 			return false;
 		}
 

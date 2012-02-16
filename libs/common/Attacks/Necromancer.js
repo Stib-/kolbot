@@ -30,7 +30,7 @@ var ClassAttack = {
 				this.skillRange[i] = 15;
 				break;
 			case 500: // Summoner
-				this.skillRange[i] = 10;
+				this.skillRange[i] = 3;
 				break;
 			default: // Every other skill
 				this.skillRange[i] = 20;
@@ -222,7 +222,7 @@ var ClassAttack = {
 	},
 
 	isCursable: function (unit) {
-		if (unit.name.indexOf(getLocaleString(11086)) > -1) { // "Possessed"
+		if (typeof copyUnit(unit).name === "undefined" || unit.name.indexOf(getLocaleString(11086)) > -1) { // "Possessed"
 			return false;
 		}
 
@@ -385,7 +385,7 @@ var ClassAttack = {
 		var baseId = getBaseStat("monstats", unit.classid, "baseid"),
 			badList = [571];
 
-		if (revive && ((unit.spectype & 0x7) || badList.indexOf(unit.classid) > -1)) {
+		if (revive && ((unit.spectype & 0x7) || badList.indexOf(unit.classid) > -1 || Config.ReviveUnstackable && getBaseStat("monstats2", baseId, "sizex") === 3)) {
 			return false;
 		}
 

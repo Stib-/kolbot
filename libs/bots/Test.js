@@ -1,7 +1,7 @@
 function Test() {
 	print("ÿc8TESTING");
 	
-	include("json2.js");
+	//include("json2.js");
 
 	function KeyDown(key) {
 		if (key === 45) {
@@ -9,7 +9,7 @@ function Test() {
 		}
 	}
 
-	addEventListener("keydown", KeyDown);	
+	addEventListener("keydown", KeyDown);
 	
 	while (true) {
 		delay(2e5);
@@ -17,7 +17,8 @@ function Test() {
 }
 
 function test() {
-	Misc.logItem("TEST", getUnit(101));
+
+
 }
 
 /*function test() {

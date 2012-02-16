@@ -67,7 +67,7 @@ var Pather = {
 				continue;
 			}
 
-			if (!(this.useTeleport ? this.teleportTo(node.x, node.y) : this.walkTo(node.x, node.y, fail > 1))) {
+			if (!(this.useTeleport ? this.teleportTo(node.x, node.y) : this.walkTo(node.x, node.y))) {
 				// Reduce node distance in new path
 				path = getPath(me.area, x, y, me.x, me.y, this.useTeleport ? 1 : 0, this.useTeleport ? 30 : 10);
 
@@ -76,7 +76,11 @@ var Pather = {
 				}
 
 				path.reverse();
-				
+
+				if (fail === 2 && !this.useTeleport) {
+					Attack.clear(5);
+				}
+
 				fail += 1;
 
 				print("move retry " + fail);
@@ -119,17 +123,13 @@ MainLoop: for (i = 0; i < 3; i += 1) {
 		return false;
 	},
 
-	walkTo: function (x, y, clear) {
+	walkTo: function (x, y) {
 		var nTimer,
 			nFail = 0,
 			attemptCount = 0;
 
 		if (me.runwalk === 0) {
 			me.runwalk = 1;
-		}
-
-		if (clear) {
-			Attack.clear(5);
 		}
 
 		// Charge!
@@ -372,11 +372,8 @@ MainLoop: while (getDistance(me, x, y) > 3 && me.mode !== 17) {
 			throw new Error("useUnit: Unit not found.");
 		}
 
-		if (!this.moveToUnit(unit)) {
-			throw new Error("useUnit: Couldn't move to unit.");
-		}
-
 		for (i = 0; i < 3; i += 1) {
+			this.moveToUnit(unit);
 			unit.interact();
 
 			tick = getTickCount();
@@ -390,6 +387,8 @@ MainLoop: while (getDistance(me, x, y) > 3 && me.mode !== 17) {
 
 				delay(10);
 			}
+			
+			this.moveTo(me.x + 3 * rand(-1, 1), me.y + 3 * rand(-1, 1));
 		}
 
 		return false;
@@ -601,27 +600,32 @@ MainLoop: while (getDistance(me, x, y) > 3 && me.mode !== 17) {
 		return false;
 	},
 
-	/*
-		Without using blue portal check there's only 2 scenarios where the bot would take its own blue portal to the area instead of a red one:
-		- Secret Cow Level portal
-		- Nihlathak's Temple
-		However, I don't see a reason to go out with a blue portal and go back through a red one, so the check won't be added for now.
-	*/
 	getPortal: function (targetArea, owner) {
 		var portal = getUnit(2, getLocaleString(3308)); // "Portal"
 
-		if (!owner) {
-			owner = me.name;
-		}
-
 		if (portal) {
 			do {
-				/* Portal is good in following cases:
-					- if portal's area matches area argument or there's no area argument specified (null)
-					- there's no Parent (red portals) or Parent matches owner argument and Parent is the player or someone in player's party
-				*/
-				if ((typeof (targetArea) !== "number" || portal.objtype === targetArea) && (((owner === me.name || Misc.inMyParty(owner)) && portal.getParent() === owner) || !portal.getParent())) { // TODO: Replace party check
-					return copyUnit(portal);
+				if (typeof targetArea !== "number" || portal.objtype === targetArea) {
+					switch (owner) {
+					case undefined: // Pather.usePortal(area) - red portal
+						if (!portal.getParent()) {
+							return copyUnit(portal);
+						}
+
+						break;
+					case null: // Pather.usePortal(area, null) - any blue portal leading to area
+						if (portal.getParent() === me.name || Misc.inMyParty(portal.getParent())) {
+							return copyUnit(portal);
+						}
+
+						break;
+					default: // Pather.usePortal(null, owner) - any blue portal belonging to owner OR Pather.usePortal(area, owner) - blue portal mathcing area and owner
+						if (portal.getParent() === owner && (owner === me.name || Misc.inMyParty(owner))) {
+							return copyUnit(portal);
+						}
+
+						break;
+					}
 				}
 			} while (portal.getNext());
 		}

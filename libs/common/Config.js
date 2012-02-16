@@ -71,6 +71,8 @@ var Config = {
 	GambleGoldStart: 0,
 	GambleGoldEnd: 0,
 
+	LogExperience: false,
+
 	// Attack specific
 	Dodge: false,
 	AttackSkill: [],
@@ -91,6 +93,7 @@ var Config = {
 	Skeletons: 0,
 	SkeletonMages: 0,
 	Revives: 0,
+	ReviveUnstackable: false,
 	PoisonNovaDelay: 2000,
 	Curse: [],
 	ExplodeCorpses: 0,

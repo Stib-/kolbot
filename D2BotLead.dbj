@@ -78,7 +78,7 @@ function main() {
 					gameStart = getTickCount();
 					me.maxgametime = gameMaxLength * 1000;
 					
-					DataFile.updateStats(gameCount);
+					DataFile.updateStats("runs", gameCount);
 				}
 			}
 

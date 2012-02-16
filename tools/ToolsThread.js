@@ -1,5 +1,5 @@
 function main() {
-	var i, mercHP, LifeMax, ManaMax,
+	var i, mercHP, LifeMax, ManaMax, ironGolem,
 		quitFlag = false,
 		timerLastDrink = [];
 
@@ -147,6 +147,22 @@ function main() {
 
 		return ".";
 	}
+	
+	function GetIronGolem() {
+		var golem = getUnit(1, "iron golem");
+
+		if (!golem) {
+			return false;
+		}
+
+		do {
+			if (golem.getParent().name === me.name) {
+				return golem;
+			}
+		} while (golem.getNext());
+
+		return false;
+	}
 
 	// Event functions
 	function RevealArea(area) {
@@ -178,7 +194,7 @@ function main() {
 				TogglePause();
 				break;
 			case 123: // F12 key
-				me.overhead("Reavealing " + getArea().name);
+				me.overhead("Revealing " + getArea().name);
 				RevealArea(me.area);
 				break;
 			}
@@ -219,11 +235,26 @@ function main() {
 
 		if (Config.ManaChicken > 0 && !me.inTown && me.mp <= Math.floor(me.mpmax * Config.ManaChicken / 100)) {
 			D2Bot.updateChickens();
-			D2Bot.printToConsole("Mana Chicken: " + me.mp + "/" + me.mpmax + " in" + getArea().name + ";1");
+			D2Bot.printToConsole("Mana Chicken: " + me.mp + "/" + me.mpmax + " in " + getArea().name + ";1");
 
 			me.chickenmp = me.mpmax; // Just to trigger the core chicken
 
 			break;
+		}
+
+		if (me.classid === 2) {
+			if (typeof ironGolem === "undefined" || typeof copyUnit(ironGolem).classid === "undefined") {
+				ironGolem = GetIronGolem();
+			}
+
+			if (ironGolem && ironGolem.hp <= ironGolem.hpmax * 0.25) {
+				D2Bot.updateChickens();
+				D2Bot.printToConsole("Irom Golem Chicken in " + getArea().name + ";1");
+
+				quit();
+
+				break;
+			}
 		}
 
 		if (Config.UseMerc && !me.inTown) {

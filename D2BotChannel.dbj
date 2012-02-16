@@ -21,10 +21,10 @@ var gameDoesNotExistTimeout		= 0;	// how long to wait for the dialog to disappea
 var waitInChatBeforeActionsMin	= 1000;		// min how long to wait before joining channel
 var waitInChatBeforeActionsMax	= 2000;		// max how long to wait before joining channel
 
-var joinChannel = "clan geno";
-var games = ["Subs Baal-"];
-var passwords = ["q"];
-var joinDelay = 3000;
+var joinChannel = "clan ant";
+var games = ["Subs Baal-", "Ant Baals-"];
+var passwords = ["q", "q"];
+var joinDelay = 3500;
 
 // DONT EDIT ANYTHING BELOW THIS
 
@@ -86,7 +86,7 @@ function main() {
 					gameStart = getTickCount();
 					me.maxgametime = gameMaxLength * 1000;
 					
-					DataFile.updateStats(gameCount);
+					DataFile.updateStats("runs", gameCount);
 				}
 			}
 

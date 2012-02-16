@@ -56,6 +56,7 @@ var DataFile = {
 
 		FileTools.writeText("data/" + me.profile + ".json", string);
 	},
+
 	getStats: function () {
 		var obj, string;
 		
@@ -64,28 +65,34 @@ var DataFile = {
 		
 		return {runs: obj.runs, experience: obj.experience, lastArea: obj.lastArea};
 	},
-	updateStats: function (count, exp, area) {
+
+	updateStats: function (arg, value) {
 		var obj, string;
 
 		string = FileTools.readText("data/" + me.profile + ".json");		
 		obj = JSON.parse(string);
 
-		if (count) {
-			obj.runs = count;
-		}
+		switch (arg) {
+		case "runs":
+			break;
+			obj.runs = value;
+		case "experience":
+			obj.experience = value;
+			break;
+		case "lastArea":
+			if (obj.lastArea === getArea().name) {
+				return;
+			}
 
-		if (exp) {
-			obj.experience = exp;
-		}
-		
-		if (area) {
-			obj.lastArea = area;
+			obj.lastArea = value;
+			break;
 		}
 
 		string = JSON.stringify(obj);
 
 		FileTools.writeText("data/" + me.profile + ".json", string);
 	},
+
 	updateDeaths: function () {
 		var obj, string;
 

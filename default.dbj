@@ -28,7 +28,7 @@ function main() {
 		DataFile.updateDeaths();
 	}
 
-	DataFile.updateStats(false, me.getStat(13));
+	DataFile.updateStats("experience", me.getStat(13));
 
 	load("tools/Party.js");
 	load("tools/ToolsThread.js");
@@ -63,5 +63,10 @@ function main() {
 
 	print("ÿc8Run duration ÿc2" + ((getTickCount() - startTime) / 1000));
 	delay(500);
+	
+	if (Config.LogExperience) {
+		D2Bot.printToConsole("Exp gained: " + (me.getStat(13) - DataFile.getStats().experience) + ";2");
+	}
+	
 	quit();
 }

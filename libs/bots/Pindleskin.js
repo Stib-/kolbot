@@ -4,7 +4,7 @@ function Pindleskin() {
 	Town.move("anya");
 
 	if (!Pather.usePortal(121)) {
-		throw new Error("Failed to move to use portal.");
+		throw new Error("Failed to use portal.");
 	}
 
 	Precast.doPrecast(true);

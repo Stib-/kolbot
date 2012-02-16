@@ -8,10 +8,6 @@ var Skill = {
 			throw new Error("Skill.cast: Must supply a skill ID");
 		}
 
-		while (me.attacking) {
-			delay(40);
-		}
-
 		var i, n, clickType, shift;
 
 		if (arguments.length === 1) {
@@ -67,7 +63,7 @@ MainLoop: for (n = 0; n < 3; n += 1) {
 		}
 
 		while (me.attacking) {
-			delay(me.ping > 150 ? 100 : 20);
+			delay(me.ping > 200 ? 100 : 20);
 		}
 
 		return true;

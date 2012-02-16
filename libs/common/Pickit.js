@@ -99,19 +99,23 @@ var Pickit = {
 			useTk = me.classid === 1 && me.getSkill(43, 1) && (type === 4 || type === 22 || (type > 75 && type < 82)) && getDistance(me, unit) > 5 && getDistance(me, unit) < 20 && !checkCollision(me, unit, 0x4);
 
 MainLoop: for (i = 0; i < 3; i += 1) {
+			while (!me.idle) {
+				delay(40);
+			}
+
 			if (unit.mode !== 3 && unit.mode !== 5) {
 				break MainLoop;
 			}
 
 			if (useTk) {
 				Skill.cast(43, 0, unit);
-			} else if (Pather.moveToUnit(unit)) {
+			} else if (getDistance(me, unit) < 4 || Pather.moveToUnit(unit)) {
 				unit.interact();
 			}
 
 			tick = getTickCount();
 
-			while (getTickCount() - tick < 500) {
+			while (getTickCount() - tick < 750) {
 				unit = copyUnit(unit);
 
 				if (unit.mode !== 3 && unit.mode !== 5) {
@@ -143,7 +147,7 @@ MainLoop: for (i = 0; i < 3; i += 1) {
 		if (picked) {
 			print("ÿc7Picked up " + color + name);
 
-			DataFile.updateStats(null, null, getArea().name);
+			DataFile.updateStats("lastArea", getArea().name);
 
 			switch (status) {
 			case 1:

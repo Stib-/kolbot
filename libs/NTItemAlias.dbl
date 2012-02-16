@@ -1266,6 +1266,9 @@ _NTIPAliasStat["itemskillongethit"]=201;
 _NTIPAliasStat["unused202"]=202;
 _NTIPAliasStat["unused203"]=203;
 _NTIPAliasStat["itemchargedskill"]=204;
+
+_NTIPAliasStat["teleportcharges"]=[204,3461];
+
 _NTIPAliasStat["unused204"]=205;
 _NTIPAliasStat["unused205"]=206;
 _NTIPAliasStat["unused206"]=207;

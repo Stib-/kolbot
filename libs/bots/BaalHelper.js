@@ -1,5 +1,5 @@
-function Baal() {
-	var tick, portal;
+function BaalHelper() { // experi-mental
+	var i, tick, portal;
 
 	this.preattack = function () {
 		var check;
@@ -24,7 +24,9 @@ function Baal() {
 				Skill.setSkill(Config.AttackSkill[4], 0);
 			}
 
-			return Skill.cast(Config.AttackSkill[3], 1);
+			Skill.cast(Config.AttackSkill[3], 1);
+
+			return true;
 		case 4:
 			break;
 		case 5:
@@ -34,7 +36,9 @@ function Baal() {
 				check = ClassAttack.checkTraps({x: 15093, y: 5029});
 
 				if (check) {
-					return ClassAttack.placeTraps({x: 15093, y: 5029}, 5);
+					ClassAttack.placeTraps({x: 15093, y: 5029}, 5);
+
+					return true;
 				}
 			}
 
@@ -109,26 +113,39 @@ function Baal() {
 		return true;
 	};
 
-	Town.doChores();
-	Pather.useWaypoint(129);
-	Precast.doPrecast(true);
+	include("bots/Nihlathak.js");
+	include("bots/FastDiablo.js");
 
-	if (!Pather.moveToExit([130, 131], true)) {
-		throw new Error("Failed to move to Throne of Destruction.");
+	try {
+		Nihlathak();
+	} catch (e) {
+		print(e);
 	}
 
-	if (Config.PublicMode) {
-		Pather.moveTo(15113, 5040);
-		Pather.makeTP();
-		say("Hot TP!");
+	try {
+		Town.goToTown();
+		FastDiablo();
+	} catch (e) {
+		print(e);
 	}
 
+	Town.goToTown(5);
+	Town.move("portalspot");
+
+	for (i = 0; i < 60; i += 1) {
+		if (Pather.usePortal(131, null)) {
+			break;
+		}
+
+		delay(1000);
+	}
+
+	if (i === 60) {
+		throw new Error("No portals to Throne");
+	}
+
+	Precast.doPrecast(false);
 	this.clearThrone();
-
-	if (Config.PublicMode) {
-		say("TP safe!");
-	}
-
 	Pather.moveTo(15093, me.classid === 3 ? 5029 : 5039);
 
 	tick = getTickCount();
@@ -159,14 +176,12 @@ MainLoop: while (true) {
 			Attack.clear(40);
 			break MainLoop;
 		default:
-			if (!this.preattack()) {
-				delay(100);
-			}
-
+			this.preattack();
 			break;
 		}
 
 		Precast.doPrecast(false);
+		delay(100);
 	}
 
 	Pather.moveTo(15092, 5011);

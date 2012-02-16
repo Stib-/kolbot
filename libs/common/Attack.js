@@ -153,7 +153,7 @@ var Attack = {
 
 			target = copyUnit(monsterList[0]);
 
-			if (target && Math.abs(orgx - target.x) <= range && Math.abs(orgy - target.y) <= range && (!spectype || (target.spectype & spectype)) && this.checkMonster(target) && (me.getSkill(45, 1) || !checkCollision(me, target, 0x1))) {
+			if (typeof target.x !== "undefined" && Math.abs(orgx - target.x) <= range && Math.abs(orgy - target.y) <= range && (!spectype || (target.spectype & spectype)) && this.checkMonster(target) && (me.getSkill(45, 1) || !checkCollision(me, target, 0x1))) {
 				if (Config.Dodge) {
 					if (attackCount % 5 === 0) {
 						dodgeList = this.buildDodgeList();
@@ -210,6 +210,82 @@ var Attack = {
 
 		ClassAttack.afterAttack();
 		this.openChests(range);
+
+		if (attackCount > 0) {
+			Pickit.pickItems();
+		}
+
+		return true;
+	},
+	
+	clearList: function (list) { // clear an already formed array of monstas
+		var i, target, result,
+			gidAttack = [],
+			attackCount = 0,
+			monsterList = list.slice(0);
+
+		while (monsterList.length > 0) {
+			monsterList.sort(this.sortMonsters);
+
+			target = copyUnit(monsterList[0]);
+
+			if (typeof target.x !== "undefined" && this.checkMonster(target)) {
+				if (Config.Dodge) {
+					if (attackCount % 5 === 0) {
+						dodgeList = this.buildDodgeList();
+					}
+
+					if (attackCount > 0 && dodgeList.length > 0) {
+						dodgeList.sort(Sort.units);
+
+						if (getDistance(me, dodgeList[0]) < 8) {
+							//this.dodge(dodgeList[0], 15, dodgeList);
+							this.dodge(target, 15, dodgeList);
+						}
+					}
+				}
+
+				me.overhead("attacking " + target.name + " spectype " + target.spectype + " id " + target.classid);
+				result = ClassAttack.doAttack(target);
+
+				switch (result) {
+				case 1:
+					monsterList.shift();
+					break;
+				case 2:
+				case 3:
+					if (!(target.spectype & 0x7)) {
+						for (i = 0; i < gidAttack.length; i += 1) {
+							if (gidAttack[i].gid === target.gid) {
+								break;
+							}
+						}
+
+						if (i === gidAttack.length) {
+							gidAttack.push({gid: target.gid, attacks: 0});
+						}
+
+						gidAttack[i].attacks += 1;
+
+						if (gidAttack[i].attacks > 12) {
+							print("ÿc1Skipping " + target.name);
+							monsterList.shift();
+						}
+					}
+
+					attackCount += 1;
+
+					break;
+				default:
+					return false;
+				}
+			} else {
+				monsterList.shift();
+			}
+		}
+
+		ClassAttack.afterAttack();
+		this.openChests(30);
 
 		if (attackCount > 0) {
 			Pickit.pickItems();
