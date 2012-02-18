@@ -243,7 +243,7 @@ function main() {
 		}
 
 		if (me.classid === 2) {
-			if (typeof ironGolem === "undefined" || typeof copyUnit(ironGolem).classid === "undefined") {
+			if (!ironGolem || !copyUnit(ironGolem)) {
 				ironGolem = GetIronGolem();
 			}
 

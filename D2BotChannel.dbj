@@ -22,9 +22,9 @@ var waitInChatBeforeActionsMin	= 1000;		// min how long to wait before joining c
 var waitInChatBeforeActionsMax	= 2000;		// max how long to wait before joining channel
 
 var joinChannel = "clan ant";
-var games = ["Subs Baal-", "Ant Baals-"];
-var passwords = ["q", "q"];
-var joinDelay = 3500;
+var games = ["Ham Chaos-"];
+var passwords = [""];
+var joinDelay = 5500;
 
 // DONT EDIT ANYTHING BELOW THIS
 
@@ -400,7 +400,6 @@ MainLoop: for (n = 0; n < games.length; n += 1) {
 		D2Bot.updateStatus("Game doesn't exist");
 
 		ControlAction.click(6,533,469,120,20);
-		delay(500);
 		ControlAction.click(6,433,433,96,32);
 
 		inGameAt = rand(gameDoesNotExistdelayMin, gameDoesNotExistdelayMax);
@@ -413,7 +412,6 @@ MainLoop: for (n = 0; n < games.length; n += 1) {
 		D2Bot.updateStatus("Game is full");
 
 		ControlAction.click(6,533,469,120,20);
-		delay(500);
 		ControlAction.click(6,433,433,96,32);
 
 		break;

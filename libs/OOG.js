@@ -1,43 +1,46 @@
 var D2Bot = {
-	sendMessage: function (winclass, hwnd, msgID, msg) {
-		sendCopyData(winclass, hwnd, msgID, msg);
-	},
 	printToConsole: function (msg) {
-		this.sendMessage(null, "D2Bot #", 0, "printToConsole;" + msg);
+		sendCopyData(null, "D2Bot #", 0, "printToConsole;" + msg);
 	},
 	printToItemLog: function (msg) {
-		this.sendMessage(null, "D2Bot #", 0, "printToItemLog;" + msg);
+		sendCopyData(null, "D2Bot #", 0, "printToItemLog;" + msg);
 	},
 	updateStatus: function (msg) {
-		this.sendMessage(null, "D2Bot #", 0, "updateStatus;" + msg);
+		sendCopyData(null, "D2Bot #", 0, "updateStatus;" + msg);
 	},
 	updateRuns: function () {
-		this.sendMessage(null, "D2Bot #", 0, "updateRuns");
+		sendCopyData(null, "D2Bot #", 0, "updateRuns");
 	},
 	updateChickens: function () {
-		this.sendMessage(null, "D2Bot #", 0, "updateChickens");
+		sendCopyData(null, "D2Bot #", 0, "updateChickens");
 	},
 	requestGameInfo: function () {
-		this.sendMessage(null, "D2Bot #", 0, "requestGameInfo");
+		sendCopyData(null, "D2Bot #", 0, "requestGameInfo");
 	},
 	restart: function (reset) {
 		if (arguments.length > 0) {
-			this.sendMessage(null, "D2Bot #", 0, "restartProfile;" + reset.toString());
+			sendCopyData(null, "D2Bot #", 0, "restartProfile;" + reset.toString());
 		} else {
-			this.sendMessage(null, "D2Bot #", 0, "restartProfile");
+			sendCopyData(null, "D2Bot #", 0, "restartProfile");
 		}
 	},
 	CDKeyInUse: function () {
-		this.sendMessage(null, "D2Bot #", 0, "CDKeyInUse");
+		sendCopyData(null, "D2Bot #", 0, "CDKeyInUse");
 	},
 	CDKeyDisabled: function () {
-		this.sendMessage(null, "D2Bot #", 0, "CDKeyDisabled");
+		sendCopyData(null, "D2Bot #", 0, "CDKeyDisabled");
 	},
 	joinMe: function(window, gameName, gameCount, gamePass, isUp) {
-		this.sendMessage(null, window, 1, gameName + gameCount + "/" + gamePass + "/" + isUp);
+		sendCopyData(null, window, 1, gameName + gameCount + "/" + gamePass + "/" + isUp);
 	},
 	requestGame: function (who) {
-		this.sendMessage(null, who, 3, me.profile);
+		sendCopyData(null, who, 3, me.profile);
+	},
+	stop: function () {
+		sendCopyData(null, "D2Bot #", 0, "stop"); //this stops current window
+	},
+	start: function (profile) {
+		SendCopyData(null, "D2Bot #", 0, "start;" + profile); //this starts a particular profile.ini
 	}
 };
 
@@ -74,8 +77,8 @@ var DataFile = {
 
 		switch (arg) {
 		case "runs":
-			break;
 			obj.runs = value;
+			break;
 		case "experience":
 			obj.experience = value;
 			break;

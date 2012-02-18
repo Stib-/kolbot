@@ -90,12 +90,18 @@ var Attack = {
 		return (target.mode === 0 || target.mode === 12);
 	},
 
-	clear: function (range, spectype, bossId) {
+	clear: function (range, spectype, bossId, sortfunc, pickit) { // probably going to change to passing an object
 		switch (arguments.length) {
 		case 0:
 			range = 25;
 		case 1:
 			spectype = 0;
+		case 2:
+			bossId = false;
+		case 3:
+			sortfunc = false;
+		case 4:
+			pickit = true;
 			break;
 		}
 
@@ -111,15 +117,11 @@ var Attack = {
 			return false;
 		}
 
-		switch (arguments.length) {
-		case 0:
-		case 1:
-		case 2:
-			orgx = me.x;
-			orgy = me.y;
+		if (!sortfunc) {
+			sortfunc = this.sortMonsters;
+		}
 
-			break;
-		case 3:
+		if (bossId) {
 			for (i = 0; !boss && i < 3; i += 1) {
 				boss = getUnit(1, bossId);
 
@@ -132,8 +134,9 @@ var Attack = {
 
 			orgx = boss.x;
 			orgy = boss.y;
-
-			break;
+		} else {
+			orgx = me.x;
+			orgy = me.y;
 		}
 
 		monsterList = [];
@@ -149,11 +152,11 @@ var Attack = {
 		}
 		
 		while (monsterList.length > 0) {
-			monsterList.sort(this.sortMonsters);
+			monsterList.sort(sortfunc);
 
 			target = copyUnit(monsterList[0]);
 
-			if (typeof target.x !== "undefined" && Math.abs(orgx - target.x) <= range && Math.abs(orgy - target.y) <= range && (!spectype || (target.spectype & spectype)) && this.checkMonster(target) && (me.getSkill(45, 1) || !checkCollision(me, target, 0x1))) {
+			if (typeof target.x !== "undefined" && Math.abs(orgx - target.x) <= range && Math.abs(orgy - target.y) <= range && (!spectype || (target.spectype & spectype)) && this.checkMonster(target) && (me.getSkill(54, 1) || !checkCollision(me, target, 0x1))) {
 				if (Config.Dodge) {
 					if (attackCount % 5 === 0) {
 						dodgeList = this.buildDodgeList();
@@ -209,23 +212,27 @@ var Attack = {
 		}
 
 		ClassAttack.afterAttack();
-		this.openChests(range);
 
-		if (attackCount > 0) {
+		if (pickit && attackCount > 0) {
+			this.openChests(range);
 			Pickit.pickItems();
 		}
 
 		return true;
 	},
 	
-	clearList: function (list) { // clear an already formed array of monstas
+	clearList: function (list, sortfunc) { // clear an already formed array of monstas
 		var i, target, result,
 			gidAttack = [],
 			attackCount = 0,
 			monsterList = list.slice(0);
 
+		if (!sortfunc) {
+			sortfunc = this.sortMonsters;
+		}
+
 		while (monsterList.length > 0) {
-			monsterList.sort(this.sortMonsters);
+			monsterList.sort(sortfunc);
 
 			target = copyUnit(monsterList[0]);
 

@@ -151,5 +151,8 @@ var Config = {
 	},
 	AutoBaal: {
 		FindShrine: false
+	},
+	KurastChests: {
+		Bazaar: false
 	}
 };

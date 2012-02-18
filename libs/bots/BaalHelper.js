@@ -113,21 +113,21 @@ function BaalHelper() { // experi-mental
 		return true;
 	};
 
-	include("bots/Nihlathak.js");
-	include("bots/FastDiablo.js");
+	//include("bots/Nihlathak.js");
+	//include("bots/FastDiablo.js");
 
-	try {
+	/*try {
 		Nihlathak();
 	} catch (e) {
 		print(e);
-	}
+	}*/
 
-	try {
+	/*try {
 		Town.goToTown();
 		FastDiablo();
 	} catch (e) {
 		print(e);
-	}
+	}*/
 
 	Town.goToTown(5);
 	Town.move("portalspot");
@@ -162,7 +162,6 @@ MainLoop: while (true) {
 		switch (this.checkThrone()) {
 		case 1:
 			Attack.clear(40);
-			Precast.doPrecast(true);
 			break;
 		case 2:
 		case 4:
@@ -185,7 +184,7 @@ MainLoop: while (true) {
 	}
 
 	Pather.moveTo(15092, 5011);
-	Precast.doPrecast(true);
+	Precast.doPrecast(false);
 
 	while (getUnit(1, 543)) {
 		delay(500);

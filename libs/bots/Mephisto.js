@@ -53,6 +53,9 @@ function Mephisto() {
 	}
 
 	Pickit.pickItems();
+	Pather.moveTo(17590, 8068);
+	delay(1500);
+	Pather.usePortal(null);
 
 	return true;
 }

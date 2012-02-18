@@ -1,7 +1,7 @@
 function Nihlathak() {
 	Town.doChores();
 	Pather.useWaypoint(123);
-	Precast.doPrecast();
+	Precast.doPrecast(false);
 
 	if (!Pather.moveToExit(124, true)) {
 		throw new Error("Failed to go to Nihlathak");

@@ -119,7 +119,7 @@ function Baal() {
 
 	if (Config.PublicMode) {
 		Pather.moveTo(15113, 5040);
-		Pather.makeTP();
+		Pather.makePortal();
 		say("Hot TP!");
 	}
 
