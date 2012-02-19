@@ -26,7 +26,7 @@ var Pather = {
 			break;
 		}
 
-		var path, node,
+		var path, node, mob,
 			fail = 0;
 
 		this.useTeleport = !me.inTown && me.getSkill(54, 1);
@@ -92,6 +92,18 @@ var Pather = {
 
 			if (clearPath) {
 				Attack.clear(15, typeof clearPath === "number" ? clearPath : false);
+
+				if (getDistance(me, node.x, node.y) > 4) {
+					this.moveTo(node.x, node.y);
+				}
+			}
+
+			if (Config.Countess.KillGhosts) { // TODO: expand&improve
+				mob = Attack.getMob("ghost", 0, 30);
+
+				if (mob) {
+					Attack.clearList(mob);
+				}
 
 				if (getDistance(me, node.x, node.y) > 4) {
 					this.moveTo(node.x, node.y);

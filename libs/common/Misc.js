@@ -1,5 +1,7 @@
 var Skill = {
 	cast: function (skillId, hand, x, y) {
+		var timed = [59, 64];
+		
 		if (!me.getSkill(skillId, 1)) {
 			return false;
 		}
@@ -63,7 +65,17 @@ MainLoop: for (n = 0; n < 3; n += 1) {
 		}
 
 		while (me.attacking) {
-			delay(me.ping > 200 ? 100 : 20);
+			delay(10);
+		}
+
+		if (timed.indexOf(skillId) > -1) {
+			for (i = 0; i < 10; i += 1) {
+				if (me.getState(121)) {
+					break;
+				}
+
+				delay(10);
+			}
 		}
 
 		return true;

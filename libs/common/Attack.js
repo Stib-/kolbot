@@ -213,14 +213,33 @@ var Attack = {
 
 		ClassAttack.afterAttack();
 
-		if (pickit && attackCount > 0) {
+		if (pickit) {
 			this.openChests(range);
 			Pickit.pickItems();
 		}
 
 		return true;
 	},
-	
+
+	getMob: function (classid, spectype, range) {
+		var monsterList = [],
+			monster = getUnit(1, classid);
+
+		if (monster) {
+			do {
+				if (getDistance(me, monster) <= range && (!spectype || (monster.spectype & spectype)) && this.checkMonster(monster)) {
+					monsterList.push(copyUnit(monster));
+				}
+			} while (monster.getNext());
+		}
+
+		if (!monsterList.length) {
+			return false;
+		}
+
+		return monsterList;
+	},
+
 	clearList: function (list, sortfunc) { // clear an already formed array of monstas
 		var i, target, result,
 			gidAttack = [],
@@ -355,7 +374,7 @@ var Attack = {
 	},
 
 	sortMonsters: function (unitA, unitB) {
-		var ids = [105];
+		var ids = [58, 59, 60, 61, 62, 101, 102, 103, 104, 105, 278, 279, 280, 281, 282, 298, 299, 300, 645, 646, 647, 662, 663, 664, 667, 668, 669, 670, 675, 676];
 
 		if (ids.indexOf(unitA.classid) > -1) {
 			return -1;

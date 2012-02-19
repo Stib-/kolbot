@@ -245,7 +245,7 @@ MainSwitch: switch (location) {
 		D2Bot.updateStatus("Unable To Connect");
 
 		if (ConnectFail) {
-			timeoutDelay("Unable to Connect", unableToConnectRetry * 60 * 1000);
+			timeoutDelay("Unable to Connect", unableToConnectRetry * 6e4);
 
 			ConnectFail = false;
 		}
@@ -274,7 +274,7 @@ MainSwitch: switch (location) {
 		}
 
 		AntiRD();
-		timeoutDelay("Realm Down", realmDownRetry * 60 * 1000);
+		timeoutDelay("Realm Down", realmDownRetry * 6e4);
 
 		if (switchKeys) {
 			D2Bot.printToConsole("Realm Down - Changing CD-Key");
@@ -313,7 +313,8 @@ MainSwitch: switch (location) {
 		if (switchKeys) {
 			D2Bot.restart(true);
 		} else {
-			timeoutDelay("CD-Key in use", cdkeyInUseRetry);
+			timeoutDelay("CD-Key in use", cdkeyInUseRetry * 6e4);
+			ControlAction.click(6,335,450,128,35);
 		}
 
 		break;
@@ -330,7 +331,7 @@ MainSwitch: switch (location) {
 			D2Bot.printToConsole("Invalid CD-Key");
 			D2Bot.restart(true);
 		} else {
-			timeoutDelay("Invalid CD-Key", cdkeyInUseRetry);
+			timeoutDelay("Invalid CD-Key", cdkeyInUseRetry * 6e4);
 		}
 		
 		break;
@@ -453,9 +454,7 @@ function RecieveCopyData(msgID, msg){
 function AntiRD() {
 	D2Bot.printToConsole("Anti RD");
 	delay(1000);
-	ControlAction.click(6,264,391,272,25);
 	ControlAction.clickRealm(2); // asia
-	ControlAction.click(6,281,538,96,32);
 	ControlAction.click(6,264,366,272,35);
 	
 	try {

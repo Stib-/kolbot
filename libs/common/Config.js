@@ -154,5 +154,8 @@ var Config = {
 	},
 	KurastChests: {
 		Bazaar: false
+	},
+	Countess: {
+		KillGhosts: false
 	}
 };
