@@ -59,7 +59,7 @@ Unit.prototype.openMenu = function () {
 			}
 
 			if (getUIFlag(0x08)) {
-				delay(400);
+				delay(250 + me.ping);
 
 				return true;
 			}
@@ -302,4 +302,34 @@ me.findItems = function (id, mode, loc) {
 	}
 
 	return list;
+};
+
+Unit.prototype.getPrefix = function (id) {
+	if (this.hasOwnProperty("prefixnum")) {
+		return this.prefixnum === id;
+	}
+	
+	switch (id) {
+	case this.prefixnum1:
+	case this.prefixnum2:
+	case this.prefixnum3:
+		return true;
+	}
+
+	return false;
+};
+
+Unit.prototype.getSuffix = function (id) {
+	if (this.hasOwnProperty("suffixnum")) {
+		return this.suffixnum === id;
+	}
+
+	switch (id) {
+	case this.suffixnum1:
+	case this.suffixnum2:
+	case this.suffixnum3:
+		return true;
+	}
+
+	return false;
 };

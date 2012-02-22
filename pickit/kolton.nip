@@ -185,8 +185,8 @@
 
 //          ==rare==
 [type] == gloves && [quality] == rare && [flag] != ethereal # [ias] == 20 && [strength]+[dexterity] >= 30
-[type] == gloves && [quality] == rare && [flag] != ethereal # [ias] == 20 && [itemaddskilltab] >= 2 && ([strength] == 15  || [dexterity] == 15)
-[type] == gloves && [quality] == rare && [flag] == ethereal # [ias] == 20 && [enhanceddefense] >= 150 && ([itemreplenishdurability] > 0 || [itemreplenishquantity] > 0)
+[type] == gloves && [quality] == rare && [flag] != ethereal # [ias] == 20 && [javelinandspearskilltab]+[passiveandmagicskilltab] >= 2 && ([strength] == 15  || [dexterity] == 15)
+[type] == gloves && [quality] == rare && [flag] == ethereal # [ias] == 20 && [enhanceddefense] >= 175 && ([itemreplenishdurability] > 0 || [itemreplenishquantity] > 0)
 
 //          ==magic==
 //[type] == gloves && [quality] == magic && [flag] != ethereal # [ias] == 20 && [javelinandspearskilltab] == 3
@@ -216,7 +216,7 @@
 [type] == boots && [quality] == rare && [flag] != ethereal # [frw] >= 30 && [fhr] == 10 && [fireresist] >= 25 && [coldresist] >= 25 && [lightresist] >= 25
 [type] == boots && [quality] == rare && [flag] != ethereal # [frw] >= 30 && [fhr] == 10 && [fireresist] >= 35 && [itemgoldbonus] >= 70
 [type] == boots && [quality] == rare && [flag] != ethereal # [frw] >= 30 && [fhr] == 10 && [maxmana] >= 35 && [fireresist]+[coldresist]+[lightresist] >= 50
-[type] == boots && [quality] == rare && [flag] == ethereal # [enhanceddefense] >= 190 && ([itemreplenishdurability] > 0 || [itemreplenishquantity] > 0)
+[type] == boots && [quality] == rare && [flag] == ethereal # [enhanceddefense] >= 175 && ([itemreplenishdurability] > 0 || [itemreplenishquantity] > 0)
 
 //          ==magic==
 
@@ -367,6 +367,7 @@
 
 //          ==unique==
 [name] == yari && [quality] == unique && [flag] == ethereal # [enhanceddamage] == 200 // hone sundan
+[name] == ghostspear && [quality] == unique && [flag] == ethereal && [flag] == identified # [enhanceddamage] == 200 // hone sundan x1
 
 //          ==rare==
 [type] == spear && [quality] == rare && [flag] == ethereal # [enhanceddamage] >= 250 && [itemtohitperlevel] >= 1 || [enhanceddamage] >= 400
@@ -622,7 +623,7 @@
 //[name] == lumrune # # [MaxQuantity] == 1
 //[name] == korune # # [MaxQuantity] == 1
 //[name] == falrune
-[name] == lemrune # # [MaxQuantity] == 1
+//[name] == lemrune # # [MaxQuantity] == 1
 
 [name] >= istrune && [name] <= zodrune
 
@@ -677,7 +678,8 @@
 [name] == largecharm && [quality] == unique
 
 // --grand--
-[name] == grandcharm && [quality] == magic # ([coldresist] == 15 && [lightresist] == 15 || [maxdamage] >= 10 && [tohit] >= 70 || [tohit] >= 125) && ([maxhp] >= 30 || [strength] >= 6 || [dexterity] >= 6 || [fhr] >= 12 || [frw] == 7)
+[name] == grandcharm && [quality] == magic # ([coldresist] == 15 && [lightresist] == 15 || [maxdamage] >= 10) && ([maxhp] >= 30 || [strength] >= 6 || [dexterity] >= 6 || [fhr] >= 12 || [frw] == 7)
+[name] == grandcharm && [quality] == magic # [tohit] >= 125 && [maxhp] >= 30
 [name] == grandcharm && [quality] == magic # ([palicombatskilltab]+[fireskilltab]+[coldskilltab]+[lightningskilltab]+[trapsskilltab]+[shadowdisciplinesskilltab]+[javelinandspearskilltab]+[poisonandboneskilltab]+[elementalskilltab] == 1) && ([maxhp] >= 30 || [strength] >= 6 || [dexterity] >= 6 || [fhr] >= 12 || [frw] == 7)
 [name] == grandcharm && [quality] == magic # [maxdamage] == 14
 [name] == grandcharm && [quality] == magic # [shapeshiftingskilltab] == 1 && [maxhp] >= 35
@@ -799,4 +801,4 @@
 ([name] == gnarledstaff || [name] == battlestaff || [name] == gothicstaff || [name] == cedarstaff || [name] == shillelagh || [name] == elderstaff) && [quality] <= superior # ([sockets] == 0 || [sockets] == 4) && ([skillcoldmastery] > 0 && ([skillblizzard] > 0 && [skillglacialspike] > 0 || [skillfrozenorb] > 0 && [skillenchant]+[skillthunderstorm] > 0) || [skillicebolt] > 0 && [skilliceblast] > 0 && [skillwarmth] > 0)
 ([name] == warstaff || [name] == runestaff || [name] == archonstaff) && [quality] <= superior # [sockets] == 4 && ([skillcoldmastery] > 0 && ([skillblizzard] > 0 && [skillglacialspike] > 0 || [skillfrozenorb] > 0 && [skillenchant]+[skillthunderstorm] > 0) || [skillicebolt] > 0 && [skilliceblast] > 0 && [skillwarmth] > 0)
 
-([name] == crystalsword || [name] == flail || [name] == waraxe || [name] == militarypick) && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1
+//([name] == crystalsword || [name] == flail || [name] == waraxe || [name] == militarypick) && [quality] <= superior # [sockets] == 5 # [maxquantity] == 1

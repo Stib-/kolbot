@@ -226,7 +226,7 @@ var Precast = new function () {
 
 			if (item) {
 MainLoop: do {
-					if (item.prefixnum === 20519) { // Call to Arms
+					if (item.getPrefix(20519)) { // Call to Arms
 						switch (item.bodylocation) {
 						case 4:
 						case 5:

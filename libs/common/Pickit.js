@@ -95,6 +95,7 @@ var Pickit = {
 			name = unit.name,
 			type = unit.itemType,
 			color = this.itemColor(unit),
+			myGold = me.getStat(14),
 			// TODO: Add config option for Telekinesis
 			useTk = me.classid === 1 && me.getSkill(43, 1) && (type === 4 || type === 22 || (type > 75 && type < 82)) && getDistance(me, unit) > 5 && getDistance(me, unit) < 20 && !checkCollision(me, unit, 0x4);
 
@@ -118,12 +119,16 @@ MainLoop: for (i = 0; i < 3; i += 1) {
 			while (getTickCount() - tick < 750) {
 				unit = copyUnit(unit);
 
-				if (unit.mode !== 3 && unit.mode !== 5) {
-					switch (classid) {
-					case 523: // Gold
-						print("ÿc7Picked up " + color + "Gold");
+				if (classid === 523) {
+					if (me.getStat(14) > myGold) {
+						print("ÿc7Picked up " + color + (me.getStat(14) - myGold) + " " + name);
 
 						break MainLoop;
+					}
+				}
+
+				if (unit.mode !== 3 && unit.mode !== 5) {
+					switch (classid) {
 					case 529: // Scroll of Town Portal
 					case 530: // Scroll of Identify
 						print("ÿc7Picked up " + color + name + " ÿc7(" + Town.checkScrolls(classid === 529 ? "tbk" : "ibk") + "/20)");

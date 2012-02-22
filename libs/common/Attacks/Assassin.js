@@ -192,7 +192,8 @@ var ClassAttack = {
 		}
 
 		var i, j, coords, angle,
-			angles = [180, 45, -45, 90, -90]; // Angle offsets
+			//angles = [180, 45, -45, 90, -90]; // Angle offsets
+			angles = [120, -120, 180, 45, -45, 90, -90]; // Angle offsets
 
 		angle = Math.round(Math.atan2(me.y - unit.y, me.x - unit.x) * 180 / Math.PI);
 
@@ -206,7 +207,7 @@ MainLoop: for (i = 0; i < angles.length; i += 1) { // get a better spot
 			}
 
 			if (getDistance(me, coords[0], coords[1]) >= 3) {
-				me.runwalk = 0;
+				//me.runwalk = 0;
 
 				return Skill.cast(Config.AttackSkill[index], this.skillHand[index], coords[0], coords[1]);
 			}

@@ -21,9 +21,9 @@ var gameDoesNotExistTimeout		= 0;	// how long to wait for the dialog to disappea
 var waitInChatBeforeActionsMin	= 1000;		// min how long to wait before joining channel
 var waitInChatBeforeActionsMax	= 2000;		// max how long to wait before joining channel
 
-var joinChannel = "clan geno";
-var games = ["Subs Baal-"];
-var passwords = [""];
+var joinChannel = "";
+var games = [];
+var passwords = [];
 var joinDelay = 5500;
 
 // DONT EDIT ANYTHING BELOW THIS

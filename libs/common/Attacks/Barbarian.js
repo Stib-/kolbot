@@ -148,7 +148,7 @@ MainLoop: for (i = 0; i < angles.length; i += 1) { // get a better spot
 
 		if (monster) {
 			do {
-				if (Attack.checkMonster(monster) && getDistance(me, monster) <= range && !checkCollision(me, monster, 0x1)) {
+				if (Attack.checkMonster(monster) && getDistance(me, monster) <= range && !checkCollision(me, monster, 0x4)) {
 					return true;
 				}
 			} while (monster.getNext());
@@ -238,7 +238,7 @@ MainLoop: for (i = 0; i < 3; i += 1) {
 			return false;
 		}
 
-		if (getDistance(me, unit) <= 25 && !checkCollision(me, unit, 0x4) && 
+		if (getDistance(me, unit) <= 25 &&
 			!unit.getState(1) && // freeze
 			!unit.getState(96) && // revive
 			!unit.getState(99) && // redeemed

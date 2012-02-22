@@ -1,6 +1,4 @@
 function BaalHelper() { // experi-mental
-	var i, tick, portal;
-
 	this.preattack = function () {
 		var check;
 
@@ -113,26 +111,33 @@ function BaalHelper() { // experi-mental
 		return true;
 	};
 
-	//include("bots/Nihlathak.js");
-	//include("bots/FastDiablo.js");
+	if (Config.BaalHelper.KillNihlathak) {
+		include("bots/Nihlathak.js");
 
-	/*try {
-		Nihlathak();
-	} catch (e) {
-		print(e);
-	}*/
+		try {
+			Nihlathak();
+		} catch (e) {
+			print(e);
+		}
+	}
 
-	/*try {
-		Town.goToTown();
-		FastDiablo();
-	} catch (e) {
-		print(e);
-	}*/
+	if (Config.BaalHelper.FaskChaos) {
+		include("bots/FastDiablo.js");
+
+		try {
+			Town.goToTown();
+			FastDiablo();
+		} catch (e) {
+			print(e);
+		}
+	}
+
+	var i, tick, portal;
 
 	Town.goToTown(5);
 	Town.move("portalspot");
 
-	for (i = 0; i < 60; i += 1) {
+	for (i = 0; i < 180; i += 1) {
 		if (Pather.usePortal(131, null)) {
 			break;
 		}

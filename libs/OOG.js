@@ -52,7 +52,8 @@ var DataFile = {
 			runs: 0,
 			experience: 0,
 			deaths: 0,
-			lastArea: ""
+			lastArea: "",
+			gold: 0
 		};
 
 		string = JSON.stringify(obj);
@@ -66,7 +67,7 @@ var DataFile = {
 		string = FileTools.readText("data/" + me.profile + ".json");
 		obj = JSON.parse(string);
 		
-		return {runs: obj.runs, experience: obj.experience, lastArea: obj.lastArea};
+		return {runs: obj.runs, experience: obj.experience, lastArea: obj.lastArea, gold: obj.gold};
 	},
 
 	updateStats: function (arg, value) {
@@ -88,6 +89,9 @@ var DataFile = {
 			}
 
 			obj.lastArea = value;
+			break;
+		case "gold":
+			obj.gold = me.getStat(14) + me.getStat(15);
 			break;
 		}
 

@@ -4,6 +4,7 @@ js_strict(true);
 include("json2.js");
 include("NTItemParser.dbl");
 include("OOG.js");
+include("Gambling.js");
 include("common/Attack.js");
 include("common/Cubing.js");
 include("common/Config.js");
@@ -22,6 +23,20 @@ function main() {
 		delay(100);
 	}
 
+	var i,
+		startTime = getTickCount();
+	
+	if (Gambling.goldFinders.indexOf(me.profile) > -1) {
+		for (i = 0; i < Gambling.gambleGames.length; i += 1) {
+			if (me.gamename.match(Gambling.gambleGames[i])) {
+				Gambling.dropGold();
+				DataFile.updateStats("gold");
+				delay(5000);
+				quit();
+			}
+		}
+	}
+	
 	if (me.getStat(13) < DataFile.getStats().experience) { // check for experience decrease -> log death
 		D2Bot.printToConsole("You died in last game;1");
 		D2Bot.printToConsole("Experience decreased by " + (DataFile.getStats().experience - me.getStat(13)) + ";1");
@@ -29,11 +44,10 @@ function main() {
 	}
 
 	DataFile.updateStats("experience", me.getStat(13));
+	DataFile.updateStats("gold");
 
 	load("tools/Party.js");
 	load("tools/ToolsThread.js");
-
-	var startTime = getTickCount();
 
 	// Initialize libs - load config variables, build pickit list, attacks, containers and cubing and runeword recipes
 	Config.init(true);

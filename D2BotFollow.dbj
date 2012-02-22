@@ -1,3 +1,5 @@
+// NOT YET WORKED ON
+
 var gameMaxLength				= 300;    	// seconds
 var gameMinLength				= 50000;	// time in milliseconds, minimum game length, 180 seconds default (1 game/3 minutes)
 var unableToConnectRetry		= 5;		// time in minutes to retry connecting on connection fail (real value is +/- 1 min)

@@ -148,11 +148,9 @@
 
 //---vlld-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[type] == circlet && [quality] == magic && [flag] != ethereal # [tohit] == 120 && [maxhp] == 40
-[type] == circlet && [quality] == magic && [flag] != ethereal # [poisonandboneskilltab] == 1 && ([frw] == 20 || [fcr] == 10) && [itemlevelreq] <= 18
-
-[type] == circlet && [quality] == rare && [flag] != ethereal # [tohit] == 120 && [maxhp] == 40 && [sockets] == 2 && [itemlevelreq] <= 18
-[type] == circlet && [quality] == rare && [flag] != ethereal # [poisonandboneskilltab] >= 1 && [fcr] == 10 && [frw] == 20 && ([maxhp]+[maxmana] >= 40 || [hpregen] >= 5 || [sockets] == 2) && [itemlevelreq] <= 18
+[type] == circlet && [quality] <= rare && [flag] != ethereal # ([tohit] >= 100 || [itemtohitpercentperlevel] > 0 || [enhanceddamage] >= 30) && ([maxhp] >= 35 || [hpregen] >= 8) && [itemlevelreq] <= 18
+[type] == circlet && [quality] <= rare && [flag] != ethereal # [poisonandboneskilltab]+[palicombatskilltab]+[fireskilltab]+[trapsskilltab] >= 1 && ([fcr] == 10 || [frw] == 20) && ([maxhp] >= 30 || [hpregen] >= 8 || [maxmana] >= 40) && [itemlevelreq] <= 18
+[type] == circlet && [quality] == rare && [flag] != ethereal # [poisonandboneskilltab]+[palicombatskilltab]+[fireskilltab]+[trapsskilltab] >= 1 && [fcr] == 10 && [frw] == 20 && [itemlevelreq] <= 18
 
 //=================================================================================================================================================================================
 //=== SHIELDS =====================================================================================================================================================================
@@ -241,14 +239,14 @@
 
 //---vlld-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// 18
 [name] == jewel && [quality] <= rare # [maxdamage] >= 20 && [itemlevelreq] <= 18
 [name] == jewel && [quality] <= rare # [enhanceddamage] == 20 && [maxdamage] == 15 && [itemlevelreq] <= 18
-[name] == jewel && [quality] <= rare # [enhanceddamage] == 20 && ([maxdamage] >= 9 || [mindamage] >= 4) && [itemlevelreq] <= 9
-//[name] == jewel && [quality] <= rare # [maxdamage] >= 9 && [itemlevelreq] <= 9
-[name] == jewel && [quality] <= rare # [maxdamage] >= 9 && ([itemreqpercent] < 0 || [strength]+[dexterity] >= 3 || [tohit] >= 20) && [itemlevelreq] <= 9
-[name] == jewel && [quality] <= rare # ([maxdamage] >= 14 || [mindamage] >= 8) && [itemlevelreq] <= 9
-[name] == jewel && [quality] <= rare # [mindamage] >= 4 && [maxdamage] >= 9 && [itemlevelreq] <= 9
-[name] == jewel && [quality] <= rare # [itemdamagetomana] == 12 && [itemreqpercent] < 0 && [itemlevelreq] <= 9
+
+// 9
+[name] == jewel && [quality] <= rare # ([maxdamage] >= 14 || [mindamage] >= 8 || [mindamage] >= 4 && [maxdamage] >= 9) && [itemlevelreq] <= 9
+[name] == jewel && [quality] <= rare # ([tohit] >= 40 || [enhanceddamage] >= 20 || [defense] >= 8) && ([maxdamage] >= 9 || [mindamage] >= 4) && [itemlevelreq] <= 9
+[name] == jewel && [quality] <= rare # ([itemdamagetomana] == 12 || [maxmana] == 10) && ([dexterity] >= 3 || [maxhp] >= 8 || [itemreqpercent] < 0) && [itemlevelreq] <= 9
 
 //=================================================================================================================================================================================
 //=== STAVES ======================================================================================================================================================================

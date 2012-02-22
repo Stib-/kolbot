@@ -28,7 +28,7 @@ var switchKeys = false;
 // D2BOT Console Command
 const D2BOT_JOIN = 1;
 const D2BOT_GAMEINFO = 2;
-const D2BOT_REQUESTGAME = 3; 
+const D2BOT_REQUESTGAME = 3;
 
 var lastGameMade = getTickCount();
 var lastGameStatus = "ready";
@@ -40,6 +40,7 @@ var ConnectFail = false;
 
 include("json2.js");
 include("OOG.js");
+include("gambling.js");
 
 if (!FileTools.exists("data/" + me.profile + ".json")) {
 	DataFile.create();
@@ -110,6 +111,19 @@ MainSwitch: switch (location) {
 			_ingame = false;
 		}
 
+		// #### experimental gambling system start ####
+		var gambleGame = Gambling.checkGamblers();
+
+		if (gambleGame && DataFile.getStats().gold > Gambling.minGold) {
+			delay(3000);
+			joinGame(gambleGame[0], gambleGame[1]);
+			delay(1000);
+			locationTimeout(5000, location);
+
+			break;
+		}
+		// #### experimental gambling system end ####
+	
 		if (!ControlAction.click(6,533,469,120,20)) { // Create
 			break;
 		}

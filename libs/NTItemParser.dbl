@@ -229,11 +229,25 @@ function NTIPParseLineInt(input)
 				_result[0] += "item.ilvl"; 
 				break; 
 			case 'p': 
-				_result[0] += "item.prefixnum"; 
-				break; 
+				//_result[0] += "item.prefixnum"; 
+				if(_section[i][_end] == '!') 
+					_result[0] += "!item.getPrefix("; 
+				else 
+					_result[0] += "item.getPrefix("; 
+
+				_end += 2;
+
+				break;
 			case 's': 
-				_result[0] += "item.suffixnum"; 
-				break; 
+				//_result[0] += "item.suffixnum"; 
+				if(_section[i][_end] == '!') 
+					_result[0] += "!item.getSuffix("; 
+				else 
+					_result[0] += "item.getSuffix("; 
+
+				_end += 2;
+
+				break;
 			default: 
 				print("Unknown Keyword : " + input); 
 				break; 
@@ -278,7 +292,7 @@ function NTIPParseLineInt(input)
 			}
 			else 
 			{
-				if(_section[i][0] == 'f') 
+				if(_section[i][0] == 'f' || _section[i][0] == 'p' || _section[i][0] == 's')
 					_result[0] += _keyword + ")"; 
 				else 
 					_result[0] += _keyword; 

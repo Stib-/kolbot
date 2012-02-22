@@ -28,7 +28,7 @@ var Attack = {
 
 				if (items) {
 					for (i = 0; i < items.length; i += 1) {
-						if (items[i].prefixnum === 20566) {
+						if (items[i].getPrefix(20566)) {
 							print("Infinity detected");
 
 							this.infinity = true;
@@ -250,9 +250,9 @@ var Attack = {
 			sortfunc = this.sortMonsters;
 		}
 
-		while (monsterList.length > 0) {
-			monsterList.sort(sortfunc);
+		monsterList.sort(sortfunc);
 
+		while (monsterList.length > 0) {
 			target = copyUnit(monsterList[0]);
 
 			if (typeof target.x !== "undefined" && this.checkMonster(target)) {
