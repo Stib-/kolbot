@@ -4,9 +4,9 @@ var Config = {
 	init: function (notify) {
 		var classes = ["Amazon", "Sorceress", "Necromancer", "Paladin", "Barbarian", "Druid", "Assassin"];
 
-		if (!include("config/" + classes[me.classid] + "_" + me.charname + ".js")) {
+		if (!include("config/" + classes[me.classid] + "." + me.charname + ".js")) {
 			if (notify) {
-				print("ÿc1" + classes[me.classid] + "_" + me.charname + ".js not found!");
+				print("ÿc1" + classes[me.classid] + "." + me.charname + ".js not found!");
 				print("ÿc1Loading default config.");
 			}
 
@@ -157,5 +157,9 @@ var Config = {
 	},
 	Countess: {
 		KillGhosts: false
+	},
+	BaalHelper: {
+		KillNihlathak: false,
+		FastChaos: false
 	}
 };

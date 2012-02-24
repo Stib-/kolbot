@@ -17,7 +17,7 @@ function LoadConfig() {
 	Scripts.UserAddon = true; // !!!YOU MUST SET THIS TO FALSE IF YOU WANT TO RUN BOSS/AREA SCRIPTS!!!
 
 	// Boss/area scripts
-	
+
 	// *** act 1 ***
 	Scripts.Mausoleum = false;
 		Config.Mausoleum.KillBloodRaven = true;
@@ -25,22 +25,29 @@ function LoadConfig() {
 		Config.Rakanishu.KillGriswold = true;
 	Scripts.Pit = false;
 		Config.Pit.ClearPit1 = true;
+	Scripts.BoneAsh = false;
 	Scripts.Countess = false;
+		Config.Countess.KillGhosts = false;
 	Scripts.Andariel = false;
-	
+	Scripts.Cows = false;
+
 	// *** act 2 ***
 	Scripts.AncientTunnels = false;
-	
+	Scripts.Duriel = false;
+
 	// *** act 3 ***
 	Scripts.KurastChests = false;
+		Config.KurastChests.Bazaar = false;
+	Scripts.KurastTemples = false;
 	Scripts.Travincal = false;
 	Scripts.Mephisto = false;
-	
+
 	// *** act 4 ***
 	Scripts.Izual = false;
 	Scripts.Vizier = false; // Intended for classic sorc, kills Vizier only.
 	Scripts.FastDiablo = false;
-	
+	Scripts.Diablo = false;
+
 	// *** act 5 ***
 	Scripts.Pindleskin = false;
 		Config.Pindleskin.KillNihlathak = true;
@@ -57,9 +64,14 @@ function LoadConfig() {
 	Scripts.Baal = false;
 	Scripts.AutoBaal = false;
 		Config.AutoBaal.FindShrine = false;
+	Scripts.BaalHelper = false;
+		Config.BaalHelper.KillNihlathak = false;
+		Config.BaalHelper.FastChaos = false;
 
 	// *** special scripts ***
-	Scripts.CrushTele = false;
+	Scripts.CrushTele = false; // classic rush teleporter. go to area of interest and press "-" numpad key
+	Scripts.Questing = false; // solves missing quests (skill/stat+shenk)
+	Scripts.Gamble = false; // gamble until out of gold, then wait for more gold at stash
 
 
 	// Town settings
@@ -87,10 +99,10 @@ function LoadConfig() {
 	 * 1 = item is unlocked and will be dropped, stashed or sold.
 	 * If you don't change the default values, the bot won't stash items.
 	 */
-	Config.Inventory[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-	Config.Inventory[1] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-	Config.Inventory[2] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-	Config.Inventory[3] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	Config.Inventory[0] = [0,0,0,0,0,0,0,0,0,0];
+	Config.Inventory[1] = [0,0,0,0,0,0,0,0,0,0];
+	Config.Inventory[2] = [0,0,0,0,0,0,0,0,0,0];
+	Config.Inventory[3] = [0,0,0,0,0,0,0,0,0,0];
 
 	Config.StashGold = 100000; // Minimum amount of gold to stash.
 
@@ -121,7 +133,7 @@ function LoadConfig() {
 	Config.GambleGoldStart = 1000000;
 	Config.GambleGoldStop = 500000;
 	
-	// Check libs/njipAliases.dbl file for other item classids
+	// Check libs/NTItemAlias.dbl file for other item classids
 	Config.GambleItems.push(520); // Amulet
 	Config.GambleItems.push(522); // Ring
 	Config.GambleItems.push(418); // Circlet
@@ -130,7 +142,7 @@ function LoadConfig() {
 	// Cubing config. All recipes will be available in Templates/Cubing.txt
 	Config.Cubing = false; // Set to true to enable cubing.
 
-	// All ingredients will be auto-picked, for classids check libs/njipAliases.dbl
+	// All ingredients will be auto-picked, for classids check libs/NTItemAlias.dbl
 	Config.Recipes.push([Recipe.Rune, 630]); // pul -> um
 	Config.Recipes.push([Recipe.Rune, 631]); // um -> mal
 	Config.Recipes.push([Recipe.Rune, 632]); // mal -> ist
@@ -142,8 +154,8 @@ function LoadConfig() {
 	Config.Recipes.push([Recipe.Blood.Helm, 424]); // Craft Blood Armet
 	Config.Recipes.push([Recipe.HitPower.Glove, 452]); // Craft Hit Power Vambraces
 
-	Config.Recipes.push([Reroll.Magic, 421]); // Reroll magic Diadem
-	Config.Recipes.push([Reroll.Rare, 421]); // Reroll rare Diadem
+	Config.Recipes.push([Recipe.Reroll.Magic, 421]); // Reroll magic Diadem
+	Config.Recipes.push([Recipe.Reroll.Rare, 421]); // Reroll rare Diadem
 
 	// Base item must be in the pickit, rest is auto-picked
 	Config.Recipes.push([Recipe.Socket.Weapon, 255]); // Socket Thresher
@@ -153,20 +165,19 @@ function LoadConfig() {
 	
 	/* Runeword config. All recipes will be available in Templates/Cubing.txt
 	 * !!!NOTE!!! enhanced damage and enhanced defense on runewords are broken in the core right now
-	 * Keep lines follow njip format (sadly) and any given runeword is tested vs ALL lines so you don't need to repeat them
+	 * Keep lines follow pickit format and any given runeword is tested vs ALL lines so you don't need to repeat them
 	 */
 	Config.MakeRunewords = true; // Set to true to enable runeword making/rerolling
 
 	Config.Runewords.push([Runeword.Insight, 255]); // Thresher
 	Config.Runewords.push([Runeword.Insight, 256]); // Cryptic Axe
 
-	Config.KeepRunewords.push("type = polearm : meditationaura = 17");
+	Config.KeepRunewords.push("[type] == polearm # [meditationaura] == 17");
 
 	Config.Runewords.push([Runeword.Spirit, 447]); // Monarch
 	Config.Runewords.push([Runeword.Spirit, 498]); // Sacred Targe
 
-	Config.KeepRunewords.push("type = shield : fcr = 35");
-	Config.KeepRunewords.push("type = auricshields : fcr = 35");
+	Config.KeepRunewords.push("[type] == shield || [type] == auricshields # [fcr] == 35");
 
 	// General config
 	Config.PublicMode = false; // Controls party invite/accept and town portals for other players.

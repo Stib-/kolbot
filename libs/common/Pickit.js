@@ -95,7 +95,7 @@ var Pickit = {
 			name = unit.name,
 			type = unit.itemType,
 			color = this.itemColor(unit),
-			myGold = me.getStat(14),
+			gold = unit.getStat(14),
 			// TODO: Add config option for Telekinesis
 			useTk = me.classid === 1 && me.getSkill(43, 1) && (type === 4 || type === 22 || (type > 75 && type < 82)) && getDistance(me, unit) > 5 && getDistance(me, unit) < 20 && !checkCollision(me, unit, 0x4);
 
@@ -120,8 +120,8 @@ MainLoop: for (i = 0; i < 3; i += 1) {
 				unit = copyUnit(unit);
 
 				if (classid === 523) {
-					if (me.getStat(14) > myGold) {
-						print("ÿc7Picked up " + color + (me.getStat(14) - myGold) + " " + name);
+					if (!unit.getStat(14) || unit.getStat(14) < gold) {
+						print("ÿc7Picked up " + color + gold + " " + name);
 
 						break MainLoop;
 					}
@@ -177,7 +177,7 @@ MainLoop: for (i = 0; i < 3; i += 1) {
 	itemColor: function (unit) {
 		switch (unit.itemType) {
 		case 4: // gold
-			return "ÿc9";
+			return "ÿc4";
 		case 74: // runes
 			return "ÿc8";
 		case 76: // healing potions

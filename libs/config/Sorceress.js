@@ -17,7 +17,7 @@ function LoadConfig() {
 	Scripts.UserAddon = true; // !!!YOU MUST SET THIS TO FALSE IF YOU WANT TO RUN BOSS/AREA SCRIPTS!!!
 
 	// Boss/area scripts
-	
+
 	// *** act 1 ***
 	Scripts.Mausoleum = false;
 		Config.Mausoleum.KillBloodRaven = true;
@@ -25,23 +25,29 @@ function LoadConfig() {
 		Config.Rakanishu.KillGriswold = true;
 	Scripts.Pit = false;
 		Config.Pit.ClearPit1 = true;
+	Scripts.BoneAsh = false;
 	Scripts.Countess = false;
+		Config.Countess.KillGhosts = false;
 	Scripts.Andariel = false;
-	
+	Scripts.Cows = false;
+
 	// *** act 2 ***
 	Scripts.AncientTunnels = false;
 	Scripts.Duriel = false;
-	
+
 	// *** act 3 ***
 	Scripts.KurastChests = false;
+		Config.KurastChests.Bazaar = false;
+	Scripts.KurastTemples = false;
 	Scripts.Travincal = false;
 	Scripts.Mephisto = false;
-	
+
 	// *** act 4 ***
 	Scripts.Izual = false;
 	Scripts.Vizier = false; // Intended for classic sorc, kills Vizier only.
 	Scripts.FastDiablo = false;
-	
+	Scripts.Diablo = false;
+
 	// *** act 5 ***
 	Scripts.Pindleskin = false;
 		Config.Pindleskin.KillNihlathak = true;
@@ -56,10 +62,16 @@ function LoadConfig() {
 	Scripts.Snapchip = false;
 		Config.Snapchip.ClearIcyCellar = true;
 	Scripts.Baal = false;
+	Scripts.AutoBaal = false;
+		Config.AutoBaal.FindShrine = false;
+	Scripts.BaalHelper = false;
+		Config.BaalHelper.KillNihlathak = false;
+		Config.BaalHelper.FastChaos = false;
 
 	// *** special scripts ***
-	Scripts.CrushTele = false;
-	Scripts.Questing = false;
+	Scripts.CrushTele = false; // classic rush teleporter. go to area of interest and press "-" numpad key
+	Scripts.Questing = false; // solves missing quests (skill/stat+shenk)
+	Scripts.Gamble = false; // gamble until out of gold, then wait for more gold at stash
 
 
 	// Town settings
@@ -121,7 +133,7 @@ function LoadConfig() {
 	Config.GambleGoldStart = 1000000;
 	Config.GambleGoldStop = 500000;
 	
-	// Check libs/njipAliases.dbl file for other item classids
+	// Check libs/NTItemAlias.dbl file for other item classids
 	Config.GambleItems.push(520); // Amulet
 	Config.GambleItems.push(522); // Ring
 	Config.GambleItems.push(418); // Circlet
@@ -130,7 +142,7 @@ function LoadConfig() {
 	// Cubing config. All recipes will be available in Templates/Cubing.txt
 	Config.Cubing = false; // Set to true to enable cubing.
 
-	// All ingredients will be auto-picked, for classids check libs/njipAliases.dbl
+	// All ingredients will be auto-picked, for classids check libs/NTItemAlias.dbl
 	Config.Recipes.push([Recipe.Rune, 630]); // pul -> um
 	Config.Recipes.push([Recipe.Rune, 631]); // um -> mal
 	Config.Recipes.push([Recipe.Rune, 632]); // mal -> ist

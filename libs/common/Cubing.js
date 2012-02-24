@@ -542,33 +542,6 @@ IngredientLoop: for (j = 0; j < this.recipes[i].Ingredients.length; j += 1) {
 
 		if (recipe.Index === Recipe.Reroll.Rare) {
 			if (unit.quality === 6 && NTIPCheckItem(unit) === 0) {
-				switch (unit.classid) {
-				case 418: // Circlet has Magic level + 3
-					if (unit.ilvl < 87) {
-						return false;
-					}
-
-					break;
-				case 419: // Coronet has Magic level + 8
-					if (unit.ilvl < 82) {
-						return false;
-					}
-
-					break;
-				case 420: // Tiara has Magic level + 13
-					if (unit.ilvl < 77) {
-						return false;
-					}
-
-					break;
-				case 421: // Diadem has Magic level + 18
-					if (unit.ilvl < 72) {
-						return false;
-					}
-
-					break;
-				}
-
 				return true;
 			}
 		}
