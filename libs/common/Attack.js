@@ -250,9 +250,9 @@ var Attack = {
 			sortfunc = this.sortMonsters;
 		}
 
-		monsterList.sort(sortfunc);
-
 		while (monsterList.length > 0) {
+			monsterList.sort(sortfunc);
+
 			target = copyUnit(monsterList[0]);
 
 			if (typeof target.x !== "undefined" && this.checkMonster(target)) {

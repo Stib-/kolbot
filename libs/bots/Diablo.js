@@ -180,7 +180,7 @@ function Diablo() {
 	};
 
 	// path coordinates
-	this.entranceToStar = [7794, 5517, 7791, 5491, 7768, 5459, 7775, 5424, 7817, 5458, 7777, 5408, 7769, 5379, 7777, 5357, 7809, 5359, 7805, 5330, 7780, 5317];
+	this.entranceToStar = [7794, 5517, 7791, 5491, 7768, 5459, 7775, 5424, 7817, 5458, 7777, 5408, 7769, 5379, 7777, 5357, 7809, 5359, 7805, 5330, 7780, 5317, 7774, 5305];
 	this.starToVizA = [7759, 5295, 7734, 5295, 7716, 5295, 7718, 5276, 7697, 5292, 7678, 5293, 7665, 5276, 7662, 5314];
 	this.starToVizB = [7759, 5295, 7734, 5295, 7716, 5295, 7701, 5315, 7666, 5313, 7653, 5284];
 	this.starToSeisA = [7781, 5259, 7805, 5258, 7802, 5237, 7776, 5228, 7775, 5205, 7804, 5193, 7814, 5169, 7788, 5153];
@@ -197,12 +197,22 @@ function Diablo() {
 		throw new Error("Failed to go move to Chaos Sanctuary");
 	}
 
-	Attack.clear(35, 0, false, this.entranceSort);
-	Pather.moveTo(7790, 5544);
-	Pather.makePortal();
-	say("TP up");
 	this.initLayout();
-	this.followPath(this.entranceToStar, this.entranceSort);
+
+	if (Config.Diablo.Entrance) {
+		Attack.clear(35, 0, false, this.entranceSort);
+		Pather.moveTo(7790, 5544);
+		Pather.makePortal();
+		say("entrance tp up");
+		this.followPath(this.entranceToStar, this.entranceSort);
+	} else {
+		Pather.moveTo(7774, 5305);
+	}
+
+	Attack.clear(35);
+	Pather.moveTo(7774, 5305);
+	Pather.makePortal();
+	say("star tp up");
 	this.vizierSeal();
 	this.seisSeal();
 	this.infectorSeal();

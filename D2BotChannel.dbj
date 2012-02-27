@@ -22,8 +22,8 @@ var waitInChatBeforeActionsMin	= 1000;		// min how long to wait before joining c
 var waitInChatBeforeActionsMax	= 2000;		// max how long to wait before joining channel
 
 var joinChannel = "";
-var games = [];
-var passwords = [];
+var games = [""];
+var passwords = [""];
 var joinDelay = 5500;
 
 // DONT EDIT ANYTHING BELOW THIS

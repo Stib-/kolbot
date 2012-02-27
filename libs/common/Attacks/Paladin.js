@@ -80,10 +80,26 @@ var ClassAttack = {
 	},
 
 	doCast: function (unit, index) {
+		var i;
+
 		if (Config.AttackSkill[index] === 112) {
 			if (!this.checkHammerPosition(unit)) {
 				this.getHammerPosition(unit);
 			}
+
+			if (Config.AttackSkill[index + 1] > -1) {
+				Skill.setSkill(Config.AttackSkill[index + 1], 0);
+			}
+
+			for (i = 0; i < 4; i += 1) {
+				if (!Attack.checkMonster(unit)) {
+					return true;
+				}
+
+				Skill.cast(Config.AttackSkill[index], this.skillHand[index], unit);
+			}
+
+			return true;
 		} else if (Config.AttackSkill[index] === 101) {
 			Attack.getIntoPosition(unit, this.skillRange[index], 0x2004, true);
 		} else if (getDistance(me, unit) > this.skillRange[index] || checkCollision(me, unit, 0x4)) {

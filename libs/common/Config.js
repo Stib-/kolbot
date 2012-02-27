@@ -73,6 +73,11 @@ var Config = {
 
 	LogExperience: false,
 
+	// DClone
+	WaitForSoJ: false,
+	StopOnDClone: false,
+	SoJWaitTime: 0,
+
 	// Attack specific
 	Dodge: false,
 	AttackSkill: [],
@@ -161,5 +166,11 @@ var Config = {
 	BaalHelper: {
 		KillNihlathak: false,
 		FastChaos: false
+	},
+	Corpsefire: {
+		ClearDen: false
+	},
+	Diablo: {
+		Entrance: false
 	}
 };

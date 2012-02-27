@@ -92,6 +92,7 @@
 [name] == warscepter && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 5) && [skillcharge]+[skillconcentration] >= 6 && [itemlevelreq] <= 18
 [name] == warscepter && [quality] <= superior  && [flag] != ethereal# ([sockets] == 0 || [sockets] == 5) && [skilldefiance]+[skillsacrifice] >= 5 && [itemlevelreq] <= 9
 
+[name] == stagbow && [quality] == superior # ([sockets] == 0 || [sockets] == 5) && [enhanceddamage] == 15
 ([name] == throwingspear || [name] == warjavelin) && [quality] <= rare && [flag] == ethereal # [enhanceddamage] > 50 && [itemreplenishquantity] > 0 && [itemlevelreq] <= 18
 ([name] == bonewand || [name] == grimwand) && [quality] == magic # [poisonandboneskilltab] == 1 && [fcr] == 10 && [skillbonespear] == 3 && [itemlevelreq] <= 18
 ([name] == bonewand || [name] == grimwand) && [quality] == rare # [poisonandboneskilltab] == 1 && [fcr] == 10 && [skillbonespear] == 3 && [sockets] == 2 && [itemlevelreq] <= 18
@@ -148,8 +149,11 @@
 
 //---vlld-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[type] == circlet && [quality] <= rare && [flag] != ethereal # ([tohit] >= 100 || [itemtohitpercentperlevel] > 0 || [enhanceddamage] >= 30) && ([maxhp] >= 35 || [hpregen] >= 8) && [itemlevelreq] <= 18
-[type] == circlet && [quality] <= rare && [flag] != ethereal # [poisonandboneskilltab]+[palicombatskilltab]+[fireskilltab]+[trapsskilltab] >= 1 && ([fcr] == 10 || [frw] == 20) && ([maxhp] >= 30 || [hpregen] >= 8 || [maxmana] >= 40) && [itemlevelreq] <= 18
+[type] == circlet && [quality] == magic && [flag] != ethereal # ([tohit] >= 120 || [itemtohitpercentperlevel] > 0 || [enhanceddamage] >= 30) && ([maxhp] >= 40 || [hpregen] >= 10 || [frw] == 20) && [itemlevelreq] <= 18
+
+// 3+ useful mods, itemtohitpercentperlevel returns 2 for visionary so it's divided by 2, the rest is divided by minimum wanted amount
+[type] == circlet && [quality] == rare && [flag] != ethereal # ([lightmaxdam]/110 + [tohit]/110 + [enhanceddamage]/25 + [itemtohitpercentperlevel]/2 + [hpregen]/8 + [maxhp]/35 + [maxmana]/35 + [frw]/20 + [sockets]/2 + [maxdamage]/5 + [mindamage]/3 >= 3) && [itemlevelreq] <= 18
+[type] == circlet && [quality] <= rare && [flag] != ethereal # [poisonandboneskilltab]+[palicombatskilltab]+[fireskilltab]+[trapsskilltab] >= 1 && ([fcr] == 10 || [frw] == 20) && ([maxhp] >= 30 || [hpregen] >= 8 || [maxmana] >= 35 || [sockets] == 2) && [itemlevelreq] <= 18
 [type] == circlet && [quality] == rare && [flag] != ethereal # [poisonandboneskilltab]+[palicombatskilltab]+[fireskilltab]+[trapsskilltab] >= 1 && [fcr] == 10 && [frw] == 20 && [itemlevelreq] <= 18
 
 //=================================================================================================================================================================================
@@ -241,7 +245,7 @@
 
 // 18
 [name] == jewel && [quality] <= rare # [maxdamage] >= 20 && [itemlevelreq] <= 18
-[name] == jewel && [quality] <= rare # [enhanceddamage] == 20 && [maxdamage] == 15 && [itemlevelreq] <= 18
+[name] == jewel && [quality] <= rare # [enhanceddamage] == 20 && ([maxdamage] == 15 || [dexterity] == 6) && [itemlevelreq] <= 18
 
 // 9
 [name] == jewel && [quality] <= rare # ([maxdamage] >= 14 || [mindamage] >= 8 || [mindamage] >= 4 && [maxdamage] >= 9) && [itemlevelreq] <= 9
@@ -267,7 +271,7 @@
 
 //---vlld-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[name] == smallcharm && [quality] == magic # [maxhp] >= 15 && ([poisonmaxdam] == 52 && [maxmana] >= 7 || [tohit] >= 10 || [plusdefense] >= 8) && [itemlevelreq] <= 18
+[name] == smallcharm && [quality] == magic # [maxhp] >= 15 && ([poisonmaxdam] == 52 && [maxmana] >= 5 || [tohit] >= 10 || [plusdefense] >= 8) && [itemlevelreq] <= 18
 [name] == smallcharm && [quality] == magic # [poisonmaxdam] == 91 // 62 pdsc level 18
 
 //=================================================================================================================================================================================
@@ -280,7 +284,8 @@
 
 [name] == largecharm && [quality] == magic # ([frw] == 7 || [fhr] == 17) && [maxmana] == 33
 //[name] == largecharm && [quality] == magic # [maxhp] == 15 && [itemlevelreq] <= 9
-[name] == largecharm && [quality] == magic # [maxhp] >= 14 && ([tohit] >= 10 || [maxmana] >= 5 || [plusdefense] >= 3) && [itemlevelreq] <= 9
+[name] == largecharm && [quality] == magic # ([strength] === 3 || [dexterity] === 3) && [tohit] >= 12 && [itemlevelreq] <= 9
+[name] == largecharm && [quality] == magic # [maxhp] >= 15 && ([tohit] >= 10 || [maxmana] >= 5 || [plusdefense] >= 3) && [itemlevelreq] <= 9
 [name] == largecharm && [quality] == magic # [frw] == 5 && [maxmana] == 18
 
 //=================================================================================================================================================================================
@@ -293,7 +298,7 @@
 
 //---vlld-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[name] == grandcharm && [quality] == magic # ([maxdamage] == 6 || [maxmana] >= 33) && ([maxhp] >= 16 || [fhr] == 12 || [frw] == 7) && [itemlevelreq] <= 18
+[name] == grandcharm && [quality] == magic # ([maxdamage] == 6 || [maxmana] >= 33) && ([maxhp] >= 20 || [fhr] == 12 || [frw] == 7) && [itemlevelreq] <= 18
 
 //=================================================================================================================================================================================
 //=== CLASS SPECIFIC ==============================================================================================================================================================
