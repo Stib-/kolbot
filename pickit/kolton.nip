@@ -103,7 +103,7 @@
 //[name] == trollnest && [quality] == unique && [flag] == ethereal # [sockets] == 3 // head hunter's glory
 //[name] == defender && [quality] == unique # [enhanceddefense] == 150 // visceratuant
 [name] == roundshield && [quality] == unique # [enhanceddefense] == 220 // moser
-[name] == luna && [quality] == unique # [defense] == 393 || [defense] == 588 // moser x1
+[name] == luna && [quality] == unique && [flag] == identified # [defense] == 393 || [defense] == 588 // moser x1
 [name] == barbedshield && [quality] == unique && [flag] == ethereal # [enhanceddefense] == 120 // lanceguard eth
 //[name] == grimshield && [quality] == unique # [enhanceddefense] == 130 && [itemmanaafterkill] == 5 // lidless wall
 
@@ -505,7 +505,7 @@
 
 //          ==unique==
 [name] == hierophanttrophy && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 200 // homunculus
-[name] == bloodlordskull && [quality] == unique && [flag] != ethereal # [defense] == 444 // homunculus x1
+[name] == bloodlordskull && [quality] == unique && [flag] != ethereal && [flag] == identified # [defense] == 444 // homunculus x1
 [name] == bloodlordskull && [quality] == unique && [flag] != ethereal # [enhanceddefense] == 150 && [poisonandboneskilltab]+[cursesskilltab]+[necromancersummoningskilltab] == 9 //darkforce spawn
 //[name] == succubusskull && [quality] == unique && [flag] != ethereal # [necromancerskills] == 2 && [fireresist] == 30 && [enhanceddefense] == 150 // boneflame
 
@@ -560,7 +560,7 @@
 
 //          ==unique==
 [name] == totemicmask && [quality] == unique # [enhanceddefense] == 200 // jalal's mane
-[name] == bloodspirit && [quality] == unique # [defense] == 477 // jalal's mane x1
+[name] == bloodspirit && [quality] == unique && [flag] == identified # [defense] == 477 // jalal's mane x1
 [name] == bloodspirit && [quality] == unique # [enhanceddefense] == 140 && [itemtohitpercent] == 120 && [shapeshiftingskilltab] == 4 && [skillferalrage] == 2 && [lifeleech] == 10 // cerebus' bite
 
 //          ==rare==

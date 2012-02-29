@@ -184,6 +184,7 @@ function LoadConfig() {
 	Config.QuitList = []; // List of players to quit with. Example: Config.QuitList = ["MySorc", "MyDin"];
 	Config.MinGameTime = 60; // Min game time in seconds. Bot will stay in game if the run is completed before.
 	Config.OpenChests = false; // Open chests. Controls key buying.
+	Config.MiniShopBot = true; // Scan items in NPC shops.
 
 	/* Attack config
 	 * To disable an attack, set it to -1

@@ -45,7 +45,7 @@ var ClassAttack = {
 		index = (unit.spectype & 0x7) ? 1 : 3;
 
 		if (Attack.getResist(unit, this.skillElement[index]) < 100) {
-			if (this.skillRange[index] < 4 && getDistance(me, unit) > 5 && !this.getHammerPosition(unit, true)) {
+			if (this.skillRange[index] < 4 && checkCollision(me, unit, 0x1) && (getCollision(unit.area, unit.x, unit.y) & 0x1)) {
 				return 1;
 			}
 
@@ -57,7 +57,7 @@ var ClassAttack = {
 		}
 
 		if (Config.AttackSkill[5] > -1 && Attack.getResist(unit, this.skillElement[5]) < 100) {
-			if (this.skillRange[5] < 4 && getDistance(me, unit) > 5 && !this.getHammerPosition(unit, true)) {
+			if (this.skillRange[5] < 4 && checkCollision(me, unit, 0x1) && (getCollision(unit.area, unit.x, unit.y) & 0x1)) {
 				return 1;
 			}
 
@@ -128,7 +128,7 @@ var ClassAttack = {
 		return false;
 	},
 
-	getHammerPosition: function (unit, checkOnly) {
+	getHammerPosition: function (unit) {
 		var i,
 			x = unit.x,
 			y = unit.y,
@@ -138,10 +138,10 @@ var ClassAttack = {
 
 		for (i = 0; i < positions.length; i += 1) {
 			if (Attack.validSpot(positions[i][0], positions[i][1])) {
-				if (checkOnly) {
+				this.reposition(positions[i][0], positions[i][1]);
+
+				if (!checkCollision(me, unit, 0x1)) {
 					return true;
-				} else {
-					return this.reposition(positions[i][0], positions[i][1]);
 				}
 			}
 		}

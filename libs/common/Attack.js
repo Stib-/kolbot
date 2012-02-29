@@ -650,7 +650,7 @@ var Attack = {
 
 		for (n = 0; n < 4; n += 1) {
 			if (n > 0) {
-				distance = Math.round(distance / 2);
+				distance = Math.floor(distance / 2);
 			}
 
 			for (i = 0; i < angles.length; i += 1) {
@@ -672,7 +672,7 @@ var Attack = {
 			}
 
 MainLoop: for (i = 0; i < coords.length; i += 1) { // sorted angles are coords[i][2]			
-				for (j = 0; j <= distance; j += 1) {
+				for (j = 1; j < distance; j += 1) {
 					cx = Math.round((Math.cos(coords[i][2] * Math.PI / 180)) * j + unit.x);
 					cy = Math.round((Math.sin(coords[i][2] * Math.PI / 180)) * j + unit.y);
 
@@ -692,8 +692,8 @@ MainLoop: for (i = 0; i < coords.length; i += 1) { // sorted angles are coords[i
 			}
 		}
 
-		//print("optimal position my ass");
 		CollMap.reset();
+		print("optimal pos qq. dist: " + getDistance(me, unit) + " red. dist: " + distance);
 
 		return false;
 	}

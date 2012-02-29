@@ -570,7 +570,7 @@ MainLoop: while (getDistance(me, x, y) > 3 && me.mode !== 17) {
 		}
 
 		for (i = 0; i < 5; i += 1) {
-			if (portal.mode !== 2 && !portal.getParent()) { // Arcane Sanctuary, maybe some other portals
+			/*if (portal.mode !== 2 && !portal.getParent()) { // Arcane Sanctuary, maybe some other portals
 				portal.interact();
 
 				tick = getTickCount();
@@ -586,7 +586,7 @@ MainLoop: while (getDistance(me, x, y) > 3 && me.mode !== 17) {
 				}
 
 				continue;
-			}
+			}*/
 
 			if (useTK) {
 				Skill.cast(43, 0, portal);
@@ -606,7 +606,7 @@ MainLoop: while (getDistance(me, x, y) > 3 && me.mode !== 17) {
 				delay(10);
 			}
 
-			this.moveTo(me.x + rand(-1, 1) * 3, me.y + rand(-1, 1) * 3); // In case of client/server desync
+			//this.moveTo(me.x + rand(-1, 1) * 3, me.y + rand(-1, 1) * 3); // In case of client/server desync
 		}
 
 		return false;

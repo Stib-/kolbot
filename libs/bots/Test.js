@@ -17,7 +17,7 @@ function Test() {
 }
 
 function test() {
-	print(Pickit.checkItem(getUnit(101)));
+	Attack.getIntoPosition(getUnit(0, "kolx-p"), 15, 0x4);
 }
 
 /*function test() {

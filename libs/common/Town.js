@@ -31,6 +31,7 @@ var Town = {
 		this.fillTome("tbk");
 		this.buyPotions();
 		this.identify();
+		this.shopItems();
 		this.repair();
 		this.buyKeys();
 		this.gamble();
@@ -380,6 +381,44 @@ var Town = {
 		}
 
 		return false;
+	},
+
+	shopItems: function () {
+		if (!Config.MiniShopBot) {
+			return true;
+		}
+		
+		var i, items,
+			npc = getInteractedNPC();
+		
+		if (!npc) {
+			return false;
+		}
+		
+		items = npc.getItems();
+		
+		if (!items || !items.length) {
+			return false;
+		}
+
+		print("Scanning " + items.length + " items.");
+
+		for (i = 0; i < items.length; i += 1) {
+			if (this.ignoredItemTypes.indexOf(items[i].itemType) === -1 && Pickit.checkItem(items[i]) > 0) {
+				try {
+					if (Storage.Inventory.CanFit(items[i]) && me.getStat(14) + me.getStat(15) >= items[i].getItemCost(0)) {
+						Misc.logItem("Shopped", items[i]);
+						items[i].buy();
+					}
+				} catch (e) {
+					print(e);
+
+					continue;
+				}
+			}
+		}
+		
+		return true;
 	},
 
 	gamble: function () {

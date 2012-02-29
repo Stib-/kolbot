@@ -69,7 +69,8 @@ var Config = {
 	Gamble: false,
 	GambleItems: [],
 	GambleGoldStart: 0,
-	GambleGoldEnd: 0,
+	GambleGoldStop: 0,
+	MiniShopBot: false,
 
 	LogExperience: false,
 

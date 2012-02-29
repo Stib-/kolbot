@@ -77,7 +77,7 @@ function main() {
 
 					lastGameStatus = "ingame";
 					ingame = true;
-					gameStart = getTickCount();
+					gameStart = new Date().getTime();
 					me.maxgametime = gameMaxLength * 1000;
 					
 					DataFile.updateStats("runs", gameCount);
@@ -115,8 +115,8 @@ MainSwitch: switch (location) {
 			lastGameStatus = "ready";
 			ingame = false;
 
-			if (getTickCount() - gameStart < gameMinLength) {
-				timeoutDelay("Min game time wait", gameMinLength + gameStart - getTickCount());
+			if (new Date().getTime() - gameStart < gameMinLength) {
+				timeoutDelay("Min game time wait", gameMinLength + gameStart - new Date().getTime());
 			}
 		}
 
@@ -164,8 +164,8 @@ MainSwitch: switch (location) {
 			lastGameStatus = "ready";
 			ingame = false;
 
-			if (getTickCount() - gameStart < gameMinLength) {
-				timeoutDelay("Min game time wait", gameMinLength + gameStart - getTickCount());
+			if (new Date().getTime() - gameStart < gameMinLength) {
+				timeoutDelay("Min game time wait", gameMinLength + gameStart - new Date().getTime());
 			}
 		}
 
@@ -439,18 +439,18 @@ MainSwitch: switch (location) {
 }
 
 function timeoutDelay(text, time) {
-	var endTime = getTickCount() + time;
+	var endTime = new Date().getTime() + time;
 	
-	while (getTickCount() < endTime) {
-		D2Bot.updateStatus(text + " (" + Math.floor((endTime - getTickCount()) / 1000) + "s)");
+	while (new Date().getTime() < endTime) {
+		D2Bot.updateStatus(text + " (" + Math.floor((endTime - new Date().getTime()) / 1000) + "s)");
 		delay(500);
 	}
 }
 
 function locationTimeout(time, location) {
-	var endtime = getTickCount() + time;
+	var endtime = new Date().getTime() + time;
 
-	while (getLocation() === location && endtime > getTickCount()) {
+	while (getLocation() === location && endtime > new Date().getTime()) {
 		delay(500);
 	}
 

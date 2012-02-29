@@ -5,7 +5,7 @@ function Diablo() {
 	};
 
 	this.starSort = function (a, b) {
-		return getDistance(a.x, a.y, 7784, 5310) - getDistance(b.x, b.y, 7784, 5310);
+		return getDistance(a.x, a.y, 7774, 5305) - getDistance(b.x, b.y, 7774, 5305);
 	};
 
 	// general functions
@@ -85,14 +85,14 @@ function Diablo() {
 		var i, boss,
 			glow = getUnit(2, 131);
 
-		for (i = 0; i < name === "infector of souls" ? 5 : 2; i += 1) {
+		for (i = 0; i < name === "infector of souls" ? 20 : 8; i += 1) {
 			boss = getUnit(1, name);
 
 			if (boss) {
 				return Attack.clear(40, 0, name);
 			}
 
-			delay(1000);
+			delay(250);
 		}
 
 		return !!glow;
@@ -209,10 +209,11 @@ function Diablo() {
 		Pather.moveTo(7774, 5305);
 	}
 
-	Attack.clear(35);
+	Attack.clear(35, 0, false, this.starSort);
 	Pather.moveTo(7774, 5305);
 	Pather.makePortal();
 	say("star tp up");
+	Attack.clear(35, 0, false, this.starSort);
 	this.vizierSeal();
 	this.seisSeal();
 	this.infectorSeal();

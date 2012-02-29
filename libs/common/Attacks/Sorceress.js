@@ -17,7 +17,7 @@ var ClassAttack = {
 				this.skillRange[i] = Attack.usingBow() ? 20 : 3;
 				break;
 			case 38: // Charged Bolt
-				this.skillRange[i] = 3;
+				this.skillRange[i] = 6;
 				break;
 			case 42: // Static Field
 				this.skillRange[i] = Math.floor((me.getSkill(42, 1) + 4) * 2 / 3);
@@ -119,7 +119,7 @@ var ClassAttack = {
 			if (Math.round(getDistance(me, unit)) > this.skillRange[timed] || checkCollision(me, unit, 0x4)) {
 				Attack.getIntoPosition(unit, this.skillRange[timed], 0x4);
 			}
-			
+
 			return Skill.cast(Config.AttackSkill[timed], this.skillHand[timed], unit);
 		}
 
@@ -130,7 +130,7 @@ var ClassAttack = {
 
 			return Skill.cast(Config.AttackSkill[untimed], this.skillHand[untimed], unit);
 		}
-		
+
 		for (i = 0; i < 25; i += 1) {
 			delay(40);
 
