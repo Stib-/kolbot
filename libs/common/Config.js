@@ -175,5 +175,8 @@ var Config = {
 	},
 	Diablo: {
 		Entrance: false
+	},
+	DiabloHelper: {
+		Entrance: false
 	}
 };

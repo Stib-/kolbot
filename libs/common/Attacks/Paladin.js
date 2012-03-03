@@ -92,11 +92,11 @@ var ClassAttack = {
 			}
 
 			for (i = 0; i < 4; i += 1) {
-				if (!Attack.checkMonster(unit)) {
+				Skill.cast(Config.AttackSkill[index], this.skillHand[index], unit);
+				
+				if (!Attack.checkMonster(unit) || getDistance(me, unit) > 5) {
 					return true;
 				}
-
-				Skill.cast(Config.AttackSkill[index], this.skillHand[index], unit);
 			}
 
 			return true;

@@ -42,7 +42,7 @@ var Town = {
 
 		while (getUIFlag(0x08) || getUIFlag(0x1A) || getUIFlag(0x19)) {
 			me.cancel();
-			delay(300)
+			delay(300);
 		}
 	},
 
@@ -61,7 +61,7 @@ var Town = {
 			npc = getUnit(1, this.tasks[me.act - 1][task]);
 		}
 
-		if (!npc || !getUIFlag(0x08) && !npc.openMenu()) {
+		if (!npc || (!getUIFlag(0x08) && !npc.openMenu())) {
 			return false;
 		}
 
@@ -411,16 +411,16 @@ MainLoop: while (list.length > 0) {
 		if (!Config.MiniShopBot) {
 			return true;
 		}
-		
+
 		var i, items,
 			npc = getInteractedNPC();
-		
+
 		if (!npc) {
 			return false;
 		}
-		
+
 		items = npc.getItems();
-		
+
 		if (!items || !items.length) {
 			return false;
 		}
@@ -428,7 +428,7 @@ MainLoop: while (list.length > 0) {
 		print("Scanning " + items.length + " items.");
 
 		for (i = 0; i < items.length; i += 1) {
-			if (this.ignoredItemTypes.indexOf(items[i].itemType) === -1 && Pickit.checkItem(items[i]) > 0) {
+			if (this.ignoredItemTypes.indexOf(items[i].itemType) === -1 && Pickit.checkItem(items[i]) === 1) {
 				try {
 					if (Storage.Inventory.CanFit(items[i]) && me.getStat(14) + me.getStat(15) >= items[i].getItemCost(0)) {
 						Misc.logItem("Shopped", items[i]);
@@ -441,7 +441,7 @@ MainLoop: while (list.length > 0) {
 				}
 			}
 		}
-		
+
 		return true;
 	},
 
@@ -450,7 +450,7 @@ MainLoop: while (list.length > 0) {
 			return true;
 		}
 
-		var i, tick, items, npc, newItem,
+		var i, items, npc, newItem,
 			list = [];
 
 		npc = this.initNPC("Gamble");
@@ -554,7 +554,7 @@ MainLoop: while (list.length > 0) {
 			return false;
 		}
 
-		return true;		
+		return true;
 	},
 
 	needKeys: function () {
@@ -745,7 +745,7 @@ MainLoop: for (i = 0; i < 3; i += 1) {
 		// me.getMerc() might return null if called right after taking a portal, that's why there's retry attempts
 		for (i = 0; i < 3; i += 1) {
 			merc = me.getMerc();
-			
+
 			if (merc && merc.mode !== 0 && merc.mode !== 12) {
 				return false;
 			}
@@ -806,7 +806,7 @@ MainLoop: for (i = 0; i < 3; i += 1) {
 		if (stash) {
 			for (i = 0; i < 3; i += 1) {
 				//Pather.moveToUnit(stash, 0, 0, false, useTK);
-				
+
 				if (useTK) {
 					Skill.cast(43, 0, stash);
 				} else {

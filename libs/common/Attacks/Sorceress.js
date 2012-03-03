@@ -72,9 +72,9 @@ var ClassAttack = {
 		index = (unit.spectype & 0x7) ? 1 : 3;
 
 		// Get timed skill
-		if (Attack.getResist(unit, this.skillElement[index]) < 100) {
+		if (Attack.getResist(unit, this.skillElement[index]) < 100 && ([56, 59].indexOf(Config.AttackSkill[index]) === -1 || Attack.validSpot(unit.x, unit.y))) { // added a check for blizz/meteor because they can't be cast on invalid spot
 			timedIndex = index;
-		} else if (Config.AttackSkill[5] > -1 && Attack.getResist(unit, this.skillElement[5]) < 100) {
+		} else if (Config.AttackSkill[5] > -1 && Attack.getResist(unit, this.skillElement[5]) < 100 && ([56, 59].indexOf(Config.AttackSkill[5]) === -1 || Attack.validSpot(unit.x, unit.y))) {
 			timedIndex = 5;
 		}
 

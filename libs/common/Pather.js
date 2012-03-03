@@ -461,7 +461,9 @@ MainLoop: while (getDistance(me, x, y) > 3 && me.mode !== 17) {
 				}
 			}
 
-			Town.move("waypoint");
+			if (me.inTown) {
+				Town.move("waypoint");
+			}
 
 			if (getUIFlag(0x14) || !check) {
 				wp.interact(targetArea);
@@ -569,8 +571,12 @@ MainLoop: while (getDistance(me, x, y) > 3 && me.mode !== 17) {
 
 		useTK = me.classid === 1 && me.getSkill(43, 1) && me.inTown && portal.getParent();
 
-		if (getDistance(me, portal) > 3) {
-			this.moveToUnit(portal, 0, 0, false, useTK);
+		if (useTK) {
+			if (getDistance(me, portal) > 14) {
+				Attack.getIntoPosition(portal, 14, 0x4);
+			}
+		} else if (getDistance(me, portal) > 3) {
+			this.moveToUnit(portal);
 		}
 
 		for (i = 0; i < 5; i += 1) {
