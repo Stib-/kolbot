@@ -17,7 +17,7 @@ function Test() {
 }
 
 function test() {
-	Attack.getIntoPosition(getUnit(0, "kolx-p"), 15, 0x4);
+	Town.doChores();
 }
 
 /*function test() {

@@ -210,11 +210,23 @@ var Town = {
 			return true;
 		}
 
-		var scroll,
+		var scroll, tome,
 			npc = this.initNPC("Shop");
 
 		if (!npc) {
 			return false;
+		}
+
+		if (!me.findItem("tbk", 0, 3)) {
+			tome = npc.getItem("tbk");
+
+			if (tome) {
+				try {
+					tome.buy();
+				} catch (e) {
+					print(e);
+				}
+			}
 		}
 
 		scroll = npc.getItem(code === "tbk" ? "tsc" : "isc");
@@ -263,7 +275,7 @@ var Town = {
 			this.fillTome("ibk");
 		}
 
-		while (list.length > 0) {
+MainLoop: while (list.length > 0) {
 			item = list.shift();
 
 			switch (Pickit.checkItem(item)) {
@@ -283,13 +295,21 @@ var Town = {
 					scroll = npc.getItem("isc");
 
 					if (scroll) {
+						if (!Storage.Inventory.CanFit(scroll)) {
+							try {
+								me.findItem("tbk", 0, 3).sell();
+							} catch (e) {
+								print(e);
+							}
+						}
+
 						scroll.buy();
 					}
 
 					scroll = me.findItem("isc", 0, 3);
 
 					if (!scroll) {
-						return false;
+						break MainLoop;
 					}
 
 					this.identifyItem(item, scroll);
@@ -310,6 +330,10 @@ var Town = {
 
 				break;
 			}
+		}
+
+		if (!me.findItem("tbk", 0, 3)) {
+			this.fillTome("tbk");
 		}
 
 		return true;
@@ -781,7 +805,7 @@ MainLoop: for (i = 0; i < 3; i += 1) {
 
 		if (stash) {
 			for (i = 0; i < 3; i += 1) {
-				Pather.moveToUnit(stash, 0, 0, false, useTK);
+				//Pather.moveToUnit(stash, 0, 0, false, useTK);
 				
 				if (useTK) {
 					Skill.cast(43, 0, stash);
@@ -1039,9 +1063,12 @@ MainLoop: for (i = 0; i < 3; i += 1) {
 			return false;
 		}
 
-		if (!Pather.moveTo(townSpot[0], townSpot[1], 3, false, useTK)) {
-			print("Town.move: failed to move to " + spot); // debug
-			return false;
+		if (useTK) {
+			if (getDistance(me, townSpot[0], townSpot[1]) > 14) {
+				Attack.getIntoPosition({x: townSpot[0], y: townSpot[1]}, 14, 0x4);
+			}
+		} else {
+			Pather.moveTo(townSpot[0], townSpot[1], 3);
 		}
 
 		return true;

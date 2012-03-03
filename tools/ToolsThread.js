@@ -204,6 +204,7 @@ function main() {
 			}
 		}
 		);
+
 	addEventListener("keyup",
 		function (key) {
 			switch (key) {

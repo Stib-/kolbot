@@ -296,7 +296,7 @@
 
 [name] == grandcharm && [quality] == magic # [maxmana] >= 45 && ([maxhp] >= 20 || [fhr] == 12) && [itemlevelreq] <= 30
 [name] == grandcharm && [quality] == magic # [coldresist] == 15 && [fireresist] == 15 && ([frw] == 7 || [fhr] == 12)
-[name] == grandcharm && [quality] == magic # [maxdamage] == 10 && ([strength]+[dexterity] == 6 || [fhr] == 12 || [maxhp] >= 20 || [frw] == 7)
+[name] == grandcharm && [quality] == magic # [maxdamage] == 10 && ([strength]+[dexterity] == 6 || [fhr] == 12 || [maxhp] >= 20 || [frw] == 7) && [itemlevelreq] <= 30
 
 //---vlld-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -324,6 +324,8 @@
 
 [type] == primalhelm && [quality] == rare && [class] <= exceptional # [skillwhirlwind] >= 2 && ([itemtohitpercentperlevel] > 0) && [itemlevelreq] <= 30
 [type] == primalhelm && [quality] <= rare && [class] <= exceptional # [warcriesskilltab] == 2 && [skillbattleorders] == 3 && [itemlevelreq] <= 30
+
+[type] == primalhelm && [quality] <= superior # [skillthrowingmastery] == 3 && [itemlevelreq] <= 18
 
 //---vlld-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

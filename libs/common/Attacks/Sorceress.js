@@ -115,7 +115,7 @@ var ClassAttack = {
 	doCast: function (unit, timed, untimed) {
 		var i;
 
-		if (timed && !me.getState(121)) {
+		if (timed && (!me.getState(121) || !Skill.isTimed(Config.AttackSkill[timed]))) {
 			if (Math.round(getDistance(me, unit)) > this.skillRange[timed] || checkCollision(me, unit, 0x4)) {
 				Attack.getIntoPosition(unit, this.skillRange[timed], 0x4);
 			}

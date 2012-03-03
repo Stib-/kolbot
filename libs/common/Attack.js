@@ -76,6 +76,16 @@ var Attack = {
 				}
 			}
 
+			if (Config.TownHP > 0 && me.hp < Math.floor(me.hpmax * Config.TownHP / 100) || Config.TownMP > 0 && me.hp < Math.floor(me.hpmax * Config.TownMP / 100)) {
+				Town.goToTown();
+				Town.heal();
+				Town.buyPotions();
+				Town.reviveMerc();
+				me.cancel();
+				Town.move("portalspot");
+				Pather.usePortal(null, me.name);
+			}
+			
 			if (ClassAttack.doAttack(target) < 2) {
 				break;
 			}
@@ -170,6 +180,16 @@ var Attack = {
 							this.dodge(target, 15, dodgeList);
 						}
 					}
+				}
+
+				if (Config.TownHP > 0 && me.hp < Math.floor(me.hpmax * Config.TownHP / 100) || Config.TownMP > 0 && me.hp < Math.floor(me.hpmax * Config.TownMP / 100)) {
+					Town.goToTown();
+					Town.heal();
+					Town.buyPotions();
+					Town.reviveMerc();
+					me.cancel();
+					Town.move("portalspot");
+					Pather.usePortal(null, me.name);
 				}
 
 				me.overhead("attacking " + target.name + " spectype " + target.spectype + " id " + target.classid);
@@ -270,7 +290,17 @@ var Attack = {
 						}
 					}
 				}
-
+				
+				if (Config.TownHP > 0 && me.hp < Math.floor(me.hpmax * Config.TownHP / 100) || Config.TownMP > 0 && me.hp < Math.floor(me.hpmax * Config.TownMP / 100)) {
+					Town.goToTown();
+					Town.heal();
+					Town.buyPotions();
+					Town.reviveMerc();
+					me.cancel();
+					Town.move("portalspot");
+					Pather.usePortal(null, me.name);
+				}
+				
 				me.overhead("attacking " + target.name + " spectype " + target.spectype + " id " + target.classid);
 				result = ClassAttack.doAttack(target);
 

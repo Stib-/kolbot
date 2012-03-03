@@ -472,8 +472,8 @@
 // assassin
 
 //          ==white==
-([name] == greatertalons || [name] == runictalons) && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3) && ([skillvenom] >= 3 || [skilllightningsentry] >= 3) && ([skillmindblast] >= 1 || [skilldragonflight] >= 1 || [skillbladeshield] >= 1 || [skillweaponblock] >= 1 || [skillshadowmaster] >= 1)
-([name] == suwayyah || [name] == feralclaws) && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3) && ([skillvenom] >= 3 || [skilllightningsentry] >= 3) && ([skillmindblast] >= 1 || [skilldragonflight] >= 1 || [skillbladeshield] >= 1 || [skillweaponblock] >= 1 || [skillshadowmaster] >= 1)
+([name] == greatertalons || [name] == runictalons) && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3) && ([skillvenom] >= 3 || [skilllightningsentry] >= 3) && ([skillmindblast] >= 1 || [skilldragonflight] >= 1) && ([skillbladeshield] >= 1 || [skillweaponblock] >= 1 || [skillshadowmaster] >= 1)
+([name] == suwayyah || [name] == feralclaws) && [quality] <= superior && [flag] != ethereal # ([sockets] == 0 || [sockets] == 3) && ([skillvenom] >= 3 || [skilllightningsentry] >= 3) && ([skillmindblast] >= 1 || [skilldragonflight] >= 1) && ([skillbladeshield] >= 1 || [skillweaponblock] >= 1 || [skillshadowmaster] >= 1)
 
 //          ==unique==
 [name] == greatertalons && [quality] == unique # [enhanceddamage] == 200 && [lifeleech] == 9 // bartuc's cut-throat
@@ -691,7 +691,7 @@
 [name] == grandcharm && [quality] == magic # [maxmana] == 59 && ([maxhp] >= 30 || [fhr] == 12)
 //[name] == grandcharm && [quality] == magic # [itemgoldbonus] == 40
 
-[name] == grandcharm && [quality] == unique # [itemmagicbonus] >= 35
+[name] == grandcharm && [quality] == unique # [itemmagicbonus] >= 35 || [itemgoldbonus] >= 150
 
 // --set items--
 
@@ -774,11 +774,15 @@
 //[name] == grandcrown && [quality] == unique # [itemgoldbonus] == 100
 
 //[name] == demonhead && [quality] == unique
-//[name] == tulwar && [quality] == unique
-//[name] == trollnest && [quality] <= superior && [flag] != ethereal # [sockets] == 2
+//[name] == tulwar && [quality] == unique # # [maxquantity] == 1
+//[name] == trollnest && [quality] <= superior && [flag] != ethereal # [sockets] == 2 # [maxquantity] == 1
+[name] == demonhideboots && [quality] == unique # [itemgoldbonus] == 70
+[type] == boots && [quality] == rare # [itemgoldbonus] == 80 && [fireresist] >= 30
+//[name] == phaseblade && [quality] <= superior # [sockets] == 5
 //[name] == heavybelt && [quality] == unique && [flag] != ethereal # [itemgoldbonus] == 80 // goldwrap
 //[type] == belt && [quality] == rare && [flag] != ethereal # [itemgoldbonus] == 80
 //([name] == warpike || [name] == ghostspear || [name] == greatpoleaxe) && [quality] <= superior && [flag] == ethereal # [sockets] == 6
+
 
 [name] == ataghan && [quality] == magic && [flag] != ethereal # [ias] >= 40 && [enhanceddamage] >= 290
 [name] == ataghan && [quality] == rare && [flag] != ethereal # [ias] == 40 && [enhanceddamage] >= 290 && [sockets] == 2
@@ -789,7 +793,6 @@
 //[name] == lacqueredplate && [quality] == set # # [maxquantity] == 1
 //[name] == amulet && [quality] == set # [lightresist] == 33
 //[name] == deathmask && [quality] == set # # [maxquantity] == 1
-//[name] == phaseblade && [quality] <= superior # [sockets] == 5
 //[name] == swirlingcrystal && [quality] == set # [skilllightningmastery] == 2
 //[name] == grandcharm && [quality] == magic # [maxmana] == 59
 //[name] == eldritchorb && [quality] == unique # [sorceressskills] == 3 && [passiveltngmastery] == 20

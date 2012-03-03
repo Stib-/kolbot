@@ -122,10 +122,6 @@ Unit.prototype.buy = function (shiftBuy) {
 		return false;
 	}
 
-	if (!Storage.Inventory.CanFit(this)) { // Abort if the item can't fit
-		return false;
-	}
-
 	var i, tick,
 		gold = me.getStat(14) + me.getStat(15);
 
@@ -160,7 +156,7 @@ Unit.prototype.sell = function () {
 	var i, tick,
 		itemCount = me.itemcount;
 
-	for (i = 0; i < 10; i += 1) {
+	for (i = 0; i < 100; i += 1) {
 		this.shop(1);
 
 		tick = getTickCount();

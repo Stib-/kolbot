@@ -42,6 +42,8 @@ var Config = {
 	MercChicken: 0,
 	HealHP: 0,
 	HealMP: 0,
+	TownHP: 0,
+	TownMP: 0,
 
 	// General
 	UseMerc: false,
