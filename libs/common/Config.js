@@ -4,7 +4,7 @@ var Config = {
 	init: function (notify) {
 		var classes = ["Amazon", "Sorceress", "Necromancer", "Paladin", "Barbarian", "Druid", "Assassin"];
 
-		if (!FileTools.exists("config/" + classes[me.classid] + "." + me.charname + ".js")) {
+		if (!FileTools.exists("libs/config/" + classes[me.classid] + "." + me.charname + ".js")) {
 			if (notify) {
 				print("ÿc1" + classes[me.classid] + "." + me.charname + ".js not found!");
 				print("ÿc1Loading default config.");
@@ -16,7 +16,7 @@ var Config = {
 				throw new Error("Failed to load default config.");
 			}
 		}
-		
+
 		try {
 			include("config/" + classes[me.classid] + "." + me.charname + ".js");
 		} catch (e) {
@@ -196,5 +196,16 @@ var Config = {
 	},
 	DiabloHelper: {
 		Entrance: false
+	},
+	BattleOrders: {
+		Mode: 0
+	},
+	Enchant: {
+		Trigger: ".chant",
+		GameLength: 20
+	},
+	IPHunter: {
+		IPList: [],
+		GameLength: 3
 	}
 };
